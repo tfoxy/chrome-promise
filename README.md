@@ -26,20 +26,19 @@ You can include it in your HTML like this:
 
 ## Example
 
-Remove all inactive tabs from the last focused window.
+Detect languages of all tabs.
 
 ```js
 chrome.promise = new ChromePromise();
 
-chrome.promise.tabs.query({
-  active: false,
-  lastFocusedWindow: true
-}).then(function(tabs) {
-  return tabs.map(function(tab) {
-    return chrome.promise.tabs.remove(tab.id);
+chrome.promise.tabs.query({}).then(function(tabs) {
+  var promises = tabs.map(function(tab) {
+    return chrome.promise.tabs.detectLanguage(tab.id);
   });
-}).then(function() {
-  alert('All inactive tabs were removed successfully');
+  
+  return Promise.all(promises);
+}).then(function(languages) {
+  alert('Languages: ' + languages.join(', '));
 }).catch(function(err) {
   alert(err.message);
 });
