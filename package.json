@@ -1,0 +1,30 @@
+{
+  "name": "chrome-promise",
+  "version": "1.0.0",
+  "description": "Promises for chrome JavaScript APIs which is used in extensions and apps.",
+  "main": "./index",
+  "scripts": {
+    "test": "mocha tests/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tfoxy/chrome-promise"
+  },
+  "bugs": {
+    "url": "https://github.com/tfoxy/chrome-promise/issues"
+  },
+  "keywords": [
+    "chrome",
+    "ext",
+    "extension",
+    "app",
+    "promise"
+  ],
+  "devDependencies": {
+    "chai": "*",
+    "chai-as-promised": "*",
+    "sinon-chrome": "*"
+  },
+  "author": "Tomás Fox",
+  "license": "MIT"
+}
