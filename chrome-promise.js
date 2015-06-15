@@ -27,7 +27,7 @@
     chrome = chrome || root.chrome;
     Promise = Promise || root.Promise;
 
-    var setPromiseFunction = function(val) {
+    var setPromiseFunction = function(fn, self) {
 
       return function() {
         var args = arguments;
@@ -44,7 +44,7 @@
           args[args.length] = callback;
           args.length++;
 
-          val.apply(null, args);
+          fn.apply(self, args);
         });
 
       };
@@ -62,7 +62,7 @@
             fillProperties(val, to[key]);
           }
           else if (type === 'function') {
-            to[key] = setPromiseFunction(val);
+            to[key] = setPromiseFunction(val, from);
           }
           else {
             to[key] = val;
