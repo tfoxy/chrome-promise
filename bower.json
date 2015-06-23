@@ -1,0 +1,30 @@
+{
+  "name": "chrome-promise",
+  "main": "index.js",
+  "version": "1.0.2",
+  "homepage": "https://github.com/tfoxy/chrome-promise",
+  "authors": [
+    "Tomás Fox <tomas.c.fox@gmail.com>"
+  ],
+  "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "keywords": [
+    "chrome",
+    "ext",
+    "extension",
+    "app",
+    "promise"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

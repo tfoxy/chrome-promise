@@ -1,7 +1,7 @@
 {
   "name": "chrome-promise",
   "version": "1.0.2",
-  "description": "Promises for chrome JavaScript APIs which is used in extensions and apps.",
+  "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
   "main": "./index",
   "scripts": {
     "test": "mocha tests/test.js"
@@ -25,6 +25,6 @@
     "chai-as-promised": "*",
     "sinon-chrome": "*"
   },
-  "author": "Tomás Fox",
+  "author": "Tomás Fox <tomas.c.fox@gmail.com>",
   "license": "MIT"
 }
