@@ -1,7 +1,7 @@
 {
   "name": "chrome-promise",
   "main": "index.js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "homepage": "https://github.com/tfoxy/chrome-promise",
   "authors": [
     "Tomás Fox <tomas.c.fox@gmail.com>"
