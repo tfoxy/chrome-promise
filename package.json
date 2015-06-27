@@ -2,9 +2,8 @@
   "name": "chrome-promise",
   "version": "1.0.3",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
-  "main": "./index",
   "scripts": {
-    "test": "mocha tests/test.js"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -21,6 +20,7 @@
     "promise"
   ],
   "devDependencies": {
+    "mocha": "*",
     "chai": "*",
     "chai-as-promised": "*",
     "sinon-chrome": "*"
