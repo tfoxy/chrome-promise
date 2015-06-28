@@ -50,6 +50,20 @@ chrome.promise.tabs.query({}).then(function(tabs) {
 });
 ```
 
+Use local storage.
+
+```js
+chrome.promise = new ChromePromise();
+
+chrome.promise.storage.local.set({foo: 'bar'}).then(function() {
+  alert('foo set');
+});
+
+chrome.promise.storage.local.get('foo').then(function(items) {
+  alert(JSON.stringify(items)); // => {"foo":"bar"}
+});
+```
+
 
 ## Options
 
