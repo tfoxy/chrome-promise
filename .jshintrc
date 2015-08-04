@@ -1,3 +1,11 @@
 {
-  "indent": 2
+  "curly": true,
+  "eqeqeq": false,
+  "freeze": true,
+  "indent": 2,
+  "maxdepth": 5,
+  "newcap": true,
+  "noarg": true,
+  "undef": true,
+  "unused": true
 }

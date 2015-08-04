@@ -1,21 +1,22 @@
 /*!
- * chrome-promise
+ * chrome-promise 1.0.4
  * https://github.com/tfoxy/chrome-promise
  *
  * Copyright 2015 Tomás Fox
  * Released under the MIT license
  */
 
+/* global define, module */
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define([], factory.bind(null, typeof exports === 'object'? GLOBAL : root));
+    define([], factory.bind(null, typeof exports === 'object'? this : root));
   } else if (typeof exports === 'object') {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory(GLOBAL);
+    module.exports = factory(this);
   } else {
     // Browser globals (root is window)
     root.ChromePromise = factory(root);
@@ -35,10 +36,11 @@
         return new Promise(function(resolve, reject) {
           function callback() {
             var err = chrome.runtime.lastError;
-            if (err)
+            if (err) {
               reject(err);
-            else
+            } else {
               resolve.apply(null, arguments);
+            }
           }
 
           args[args.length] = callback;
@@ -60,11 +62,9 @@
           if (type === 'object' && !(val instanceof ChromePromise)) {
             to[key] = {};
             fillProperties(val, to[key]);
-          }
-          else if (type === 'function') {
+          } else if (type === 'function') {
             to[key] = setPromiseFunction(val, from);
-          }
-          else {
+          } else {
             to[key] = val;
           }
         }
