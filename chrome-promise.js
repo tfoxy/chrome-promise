@@ -1,5 +1,5 @@
 /*!
- * chrome-promise 1.0.4
+ * chrome-promise 1.0.5
  * https://github.com/tfoxy/chrome-promise
  *
  * Copyright 2015 Tomás Fox
