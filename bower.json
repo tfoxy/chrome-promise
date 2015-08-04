@@ -1,7 +1,6 @@
 {
   "name": "chrome-promise",
-  "main": "index.js",
-  "version": "1.0.3",
+  "main": "chrome-promise.js",
   "homepage": "https://github.com/tfoxy/chrome-promise",
   "authors": [
     "Tomás Fox <tomas.c.fox@gmail.com>"
@@ -21,10 +20,8 @@
   ],
   "license": "MIT",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "**/*",
+    "!chrome-promise.js",
+    "!LICENSE"
   ]
 }
