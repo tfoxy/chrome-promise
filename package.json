@@ -23,7 +23,7 @@
     "mocha": "*",
     "chai": "*",
     "chai-as-promised": "*",
-    "sinon-chrome": "0.1.0"
+    "sinon-chrome": "0.1.x"
   },
   "author": "Tomás Fox <tomas.c.fox@gmail.com>",
   "license": "MIT"
