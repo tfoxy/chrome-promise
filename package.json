@@ -1,6 +1,6 @@
 {
   "name": "chrome-promise",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
   "main": "./chrome-promise",
   "scripts": {
