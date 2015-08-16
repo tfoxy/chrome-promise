@@ -4,7 +4,7 @@
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
   "main": "./chrome-promise",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha && protractor"
   },
   "repository": {
     "type": "git",
@@ -21,9 +21,10 @@
     "promise"
   ],
   "devDependencies": {
-    "mocha": "*",
     "chai": "*",
     "chai-as-promised": "*",
+    "mocha": "*",
+    "protractor": "^2.1.0",
     "sinon": "*",
     "sinon-chrome": "0.1.x"
   },

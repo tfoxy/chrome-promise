@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "TestExtension",
+  "version": "0.0.1",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxNfdUBqzP2cO4dEp/MFVxYY+1/NBp7eYSajZfN8LKhRXzYRJFaPiFsyteiEDL4tFR4OtA7xEm4tdZwTZ1pDXP1By4SXrkTR6Wjko6sR87nDo0+Ae74R1FdtP8SI5xP8WKRkfLEXZTYAxox5hlL33r8jQ8u/JCeD9aZveXPhjPaOisP/8YLMp08l3CTWiDaKw6l4sVSmVnoxepBPhgBb/Im3Ibt1WLORQP7VXtjXQO5Hp+gSa/RuY+FT8ZaghI0KY0ueRiDSThnhlSWyCQelTmEKHIJfiun7oMj41cU3IwZm+3MQCgIAdsqcY0w+41tP2PgZT1gkh3vm/bAqQUSUC3wIDAQAB"
+}

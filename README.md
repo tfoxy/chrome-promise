@@ -24,9 +24,6 @@ You can include it in your HTML like this:
 
 ```html
 <script type="text/javascript" src="chrome-promise.js"></script>
-<script type="text/javascript">
-  chrome.promise = new ChromePromise();
-</script>
 ```
 
 
@@ -57,9 +54,8 @@ chrome.promise = new ChromePromise();
 
 chrome.promise.storage.local.set({foo: 'bar'}).then(function() {
   alert('foo set');
-});
-
-chrome.promise.storage.local.get('foo').then(function(items) {
+  return chrome.promise.storage.local.get('foo');
+}).then(function(items) {
   alert(JSON.stringify(items)); // => {"foo":"bar"}
 });
 ```

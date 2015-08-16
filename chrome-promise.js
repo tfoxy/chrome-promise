@@ -1,12 +1,10 @@
 /*!
- * chrome-promise 1.0.5
+ * chrome-promise 1.0.6
  * https://github.com/tfoxy/chrome-promise
  *
  * Copyright 2015 Tomás Fox
  * Released under the MIT license
  */
-
-/* global define, module */
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {

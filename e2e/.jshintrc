@@ -1,0 +1,14 @@
+{
+  "extends": "../.jshintrc",
+
+  "multistr": true,
+
+  "jasmine": true,
+  "node": true,
+  "globals": {
+    "browser": true,
+
+    "chrome": true,
+    "ChromePromise": true
+  }
+}
