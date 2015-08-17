@@ -1,9 +1,17 @@
 language: node_js
 node_js:
-  - "node"
+- "node"
 before_script:
 - "export DISPLAY=:99.0"
 - sh -e /etc/init.d/xvfb start
 - webdriver-manager update
 - webdriver-manager start &
 - sleep 3
+deploy:
+  provider: npm
+  email: tomas.c.fox@gmail.com
+  api_key:
+    secure: JzVEbLC9Z4qY3eDfyYZFpCSZ8kjpCDkaWXaIrD8Qy7QrGc0HiXBplNJCmdy9XpN5d7XTwoqBUJSMDmYShO2l/R6od0GtvY7WQkgQ+rZpzksGv2Mqmz5F4Nw1deLqTljxU8S7yfthct6tC0VrVBj2M4kszwfvhdoyOojDzE9fdcPsC1FEL2zWtu/OAYstPhL7bjZ4i23G1cftWkN3EwUDfO8RItcdHON4udmyS4ys0jAE7K5BCkWejnj8pWRy/AlA8px0BrC4MoH91fJliH9RZRPHMKUkUnbdhBm+yyv/1ciRUX9lyAk11lAdrJIDQnpGpAola6ZhkmZllKF/6mSkJVwUTLMF5Gxw5gj4FrY/rgjrnutzPV0VFEvz48taMWGbyhby/Qsy61maNM6roXF+0hSJ261qldW2uo3b1srsZBObe3hJLiHXNu/X/cuoc28MKQDhbh4IUTAWp4Ane17Zsqc/y62xc2ElUcT0GiKZt4Ah9kJ0YGSnxqcrPOTPzb8myizdkQaDIWzkz8jfSJO1aHPDuIbyTnSjU4pxMxqm/HyKNorz1aqHApxpmINmsdPY+1mZaGa7XPAcjJtJmaV/1cKhcZynsyAHO9UN2OKxIK51Tk6Hb0QJqqFRS64aD3cRzeAneRoCg4q7TF2+ewZI5NATuz4zG5odLwYCteMdyZg=
+  on:
+    tags: true
+    repo: tfoxy/chrome-promise
