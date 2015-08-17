@@ -5,7 +5,7 @@ before_script:
 - "export DISPLAY=:99.0"
 - sh -e /etc/init.d/xvfb start
 - webdriver-manager update
-- (./webdriver-manager start &) > /dev/null
+- (webdriver-manager start &) > /dev/null
 - sleep 3
 deploy:
   provider: npm
