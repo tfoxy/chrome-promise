@@ -1,17 +1,17 @@
 language: node_js
 node_js:
-- "node"
+- node
 before_script:
-- "export DISPLAY=:99.0"
+- export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 - webdriver-manager update
-- (webdriver-manager start &) > /dev/null
+- "(webdriver-manager start &) > /dev/null"
 - sleep 3
 deploy:
   provider: npm
   email: tomas.c.fox@gmail.com
   api_key:
-    secure: JzVEbLC9Z4qY3eDfyYZFpCSZ8kjpCDkaWXaIrD8Qy7QrGc0HiXBplNJCmdy9XpN5d7XTwoqBUJSMDmYShO2l/R6od0GtvY7WQkgQ+rZpzksGv2Mqmz5F4Nw1deLqTljxU8S7yfthct6tC0VrVBj2M4kszwfvhdoyOojDzE9fdcPsC1FEL2zWtu/OAYstPhL7bjZ4i23G1cftWkN3EwUDfO8RItcdHON4udmyS4ys0jAE7K5BCkWejnj8pWRy/AlA8px0BrC4MoH91fJliH9RZRPHMKUkUnbdhBm+yyv/1ciRUX9lyAk11lAdrJIDQnpGpAola6ZhkmZllKF/6mSkJVwUTLMF5Gxw5gj4FrY/rgjrnutzPV0VFEvz48taMWGbyhby/Qsy61maNM6roXF+0hSJ261qldW2uo3b1srsZBObe3hJLiHXNu/X/cuoc28MKQDhbh4IUTAWp4Ane17Zsqc/y62xc2ElUcT0GiKZt4Ah9kJ0YGSnxqcrPOTPzb8myizdkQaDIWzkz8jfSJO1aHPDuIbyTnSjU4pxMxqm/HyKNorz1aqHApxpmINmsdPY+1mZaGa7XPAcjJtJmaV/1cKhcZynsyAHO9UN2OKxIK51Tk6Hb0QJqqFRS64aD3cRzeAneRoCg4q7TF2+ewZI5NATuz4zG5odLwYCteMdyZg=
+    secure: WJ8FCWV2xaN4T5sjom0hOGucGzobsEzbywjo3Aa1heurNR+gf+hyBIyVI6w3Qh5/af7l9dmxfXnXhHBhw0Tu9SSyECV17GZnFY94EcbKBfceNgGABbx3HFVuujwhbwi021UUGQF/HwLCj+Dc8t5PmC9L/m6/bxSbXccf7ttIwM6vF7+uxMcnGWWS2qLfcb4UGGuU8zJKA2BCrSQdiarTtOuM1pfOmFYdhAXUafRl16gO/2tBI6wOZ1kZ8eVwvdFZKLGshEh0rIaiWPKOyqz232vLDlpMO4MuUVn+RmkmIHmS95im+Lc2zbJgCpZZuyU5Xl0nVVIE41UOaTmJYSjB/3HznDq1vUy5aKNlEjX3a3XPc3u+ZLwISlimevaoAsfJCLQ5WEVdzOuoEObhVm/tEfBE3/UfpBi7T3m6sT7BkiSsLFgOC1OtwXgPK5b7GBjFQGM98bshLjcUmUYgKoER8UThuv4vXeQFOcwnh+dNbij+PE5UIA20v12SU7ri0jwY5bNLGC8wJS7/2iF4Qa7sTz3NVkNWNL6aEqtxCOGQC+/sOpL4koeNOcsxlsGXiJKAJ5dzWO4qr6cAjPInIY7+NFAt0eSFFdFh1BTraJcO3RHaK1Z6G/6psSyoCHuyRAiBOB7tdGDU9KkrBU7+RjoeSyPyeFspwz5f+xIgB10wjSg=
   on:
     tags: true
     repo: tfoxy/chrome-promise
