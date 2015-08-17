@@ -24,7 +24,7 @@
     "chai": "*",
     "chai-as-promised": "*",
     "mocha": "*",
-    "protractor": "^2.1.0",
+    "protractor": "0.23.1",
     "sinon": "*",
     "sinon-chrome": "0.1.x"
   },
