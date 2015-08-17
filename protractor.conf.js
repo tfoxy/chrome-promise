@@ -1,18 +1,24 @@
 (function() {
   'use strict';
 
-  /* global exports, require */
+  /* global exports, require, process */
 
   var path = require('path');
 
-  exports.config = {
+  var config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     capabilities: {
       browserName: 'chrome',
       chromeOptions: {
-        args: ['--no-sandbox', '--load-extension=' + path.resolve('e2e-app')]
+        args: ['--load-extension=' + path.resolve('e2e-app')]
       }
     },
     specs: ['e2e/**/*.js']
   };
+
+  if (process.env.TRAVIS) {
+    config.capabilities.chromeOptions.args.push('--no-sandbox');
+  }
+
+  exports.config = config;
 })();
