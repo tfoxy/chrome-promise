@@ -10,7 +10,7 @@
     capabilities: {
       browserName: 'chrome',
       chromeOptions: {
-        args: ['--load-extension=' + path.resolve('e2e-app')]
+        args: ['--no-sandbox', '--load-extension=' + path.resolve('e2e-app')]
       }
     },
     specs: ['e2e/**/*.js']
