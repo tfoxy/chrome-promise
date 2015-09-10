@@ -3,7 +3,7 @@ describe('chrome extension page', function() {
 
   beforeEach(function() {
     browser.ignoreSynchronization = true;
-    browser.get('chrome-extension://oaeciicibcdolnheomcfodedafhmgkee/empty.html');
+    browser.get('empty.html');
   });
 
   it('has a chrome object', function() {

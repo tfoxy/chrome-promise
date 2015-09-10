@@ -6,7 +6,7 @@
   var path = require('path');
 
   var config = {
-    seleniumAddress: 'http://localhost:4444/wd/hub',
+    baseUrl: 'chrome-extension://oaeciicibcdolnheomcfodedafhmgkee/',
     capabilities: {
       browserName: 'chrome',
       chromeOptions: {

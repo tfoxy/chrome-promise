@@ -22,11 +22,19 @@
 }(this, function (root) {
   'use strict';
 
+  return ChromePromise;
+
+  ////////////////
+
   function ChromePromise(chrome, Promise) {
     chrome = chrome || root.chrome;
     Promise = Promise || root.Promise;
 
-    var setPromiseFunction = function(fn, self) {
+    fillProperties(chrome, this);
+
+    ////////////////
+
+    function setPromiseFunction(fn, thisArg) {
 
       return function() {
         var args = arguments;
@@ -41,36 +49,31 @@
             }
           }
 
-          args[args.length] = callback;
-          args.length++;
+          Array.prototype.push.call(args, callback);
 
-          fn.apply(self, args);
+          fn.apply(thisArg, args);
         });
 
       };
 
-    };
+    }
 
-    var fillProperties = function(from, to) {
-      for (var key in from) {
-        if (Object.prototype.hasOwnProperty.call(from, key)) {
-          var val = from[key];
+    function fillProperties(source, target) {
+      for (var key in source) {
+        if (Object.prototype.hasOwnProperty.call(source, key)) {
+          var val = source[key];
           var type = typeof val;
 
           if (type === 'object' && !(val instanceof ChromePromise)) {
-            to[key] = {};
-            fillProperties(val, to[key]);
+            target[key] = {};
+            fillProperties(val, target[key]);
           } else if (type === 'function') {
-            to[key] = setPromiseFunction(val, from);
+            target[key] = setPromiseFunction(val, source);
           } else {
-            to[key] = val;
+            target[key] = val;
           }
         }
       }
-    };
-
-    fillProperties(chrome, this);
+    }
   }
-
-  return ChromePromise;
 }));
