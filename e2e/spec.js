@@ -33,7 +33,7 @@ describe('chrome extension page', function() {
       browser.driver.executeScript(cleanUp);
     });
 
-    it('it sets and gets some value using chrome.storage', function() {
+    it('sets and gets some value using chrome.storage', function() {
       function script(callback) {
         var chromep = new ChromePromise();
 
@@ -43,6 +43,35 @@ describe('chrome extension page', function() {
       }
 
       expect(browser.driver.executeAsyncScript(script)).toEqual({foo: 'bar'});
+    });
+
+    it('catches an error when chrome.runtime.lastError exists', function() {
+      function script(callback) {
+        var chromep = new ChromePromise();
+
+        return chromep.tabs.get(0).then(function() {
+          callback('NO_ERROR');
+        }, function() {
+          callback('ERROR');
+        });
+      }
+
+      expect(browser.driver.executeAsyncScript(script)).toEqual('ERROR');
+    });
+
+    it('catches an error when a function is called' +
+        ' without matching its definition', function() {
+      function script(callback) {
+        var chromep = new ChromePromise();
+
+        return chromep.tabs.query().then(function() {
+          callback('NO_ERROR');
+        }, function() {
+          callback('ERROR');
+        });
+      }
+
+      expect(browser.driver.executeAsyncScript(script)).toEqual('ERROR');
     });
 
   });
