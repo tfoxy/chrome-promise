@@ -29,7 +29,7 @@ You can include it in your HTML like this:
 ```
 
 
-## Example
+## Examples
 
 Detect languages of all tabs.
 
@@ -70,3 +70,50 @@ The constructor accepts two parameters: chrome and Promise.
 * `chrome` is the chrome API object. By default (or when null or undefined are used), it is the 'chrome' global property. 
 
 * `Promise` is the object used to create promises. By default, it is the 'Promise' global property.
+
+
+## Synchronous-looking code
+
+Starting from Chrome 39, you can use 
+[generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
+Using the methods [Q.async](https://github.com/kriskowal/q/wiki/API-Reference#qasyncgeneratorfunction)
+and [Q.spawn](https://github.com/kriskowal/q/wiki/API-Reference#qspawngeneratorfunction)
+from the [Q library](https://github.com/kriskowal/q), the previous examples can be rewritten as:
+
+```js
+chrome.promise = new ChromePromise();
+
+// try...catch
+Q.spawn(function* () {
+  try {
+    var tabs = yield chrome.promise.tabs.query({});
+    var languages = yield Promise.all(tabs.map(function(tab) {
+      return chrome.promise.tabs.detectLanguage(tab.id);
+    }));
+    alert('Languages: ' + languages.join(', '));
+  } catch(err) {
+    alert(err);
+  }
+});
+
+// promise.catch
+Q.async(function* () {
+  var tabs = yield chrome.promise.tabs.query({});
+  var languages = yield Promise.all(tabs.map(function(tab) {
+    return chrome.promise.tabs.detectLanguage(tab.id);
+  }));
+  alert('Languages: ' + languages.join(', '));
+})().catch(function(err) {
+  alert(err);
+});
+
+Q.spawn(function* () {
+  yield chrome.promise.storage.local.set({foo: 'bar'});
+  alert('foo set');
+  var items = yield chrome.promise.storage.local.get('foo');
+  alert(JSON.stringify(items));
+});
+
+```
+
+You can also use the [co library](https://github.com/tj/co) instead of _Q_. 
