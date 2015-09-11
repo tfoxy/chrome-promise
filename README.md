@@ -1,7 +1,9 @@
 chrome-promise
 ==========
 
-[![npm version](http://img.shields.io/npm/v/chrome-promise.svg)](https://npmjs.org/package/chrome-promise) ![bower version](https://img.shields.io/bower/v/chrome-promise.svg) [![build status](https://img.shields.io/travis/tfoxy/chrome-promise.svg)](https://travis-ci.org/tfoxy/chrome-promise)
+[![npm version](http://img.shields.io/npm/v/chrome-promise.svg)](https://npmjs.org/package/chrome-promise)
+[![bower version](https://img.shields.io/bower/v/chrome-promise.svg)](https://github.com/tfoxy/chrome-promise/releases)
+[![build status](https://img.shields.io/travis/tfoxy/chrome-promise.svg)](https://travis-ci.org/tfoxy/chrome-promise)
 
 Chrome API using promises.
 
