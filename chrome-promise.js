@@ -1,15 +1,15 @@
 /*!
- * chrome-promise 1.0.6
+ * chrome-promise 1.0.7
  * https://github.com/tfoxy/chrome-promise
  *
  * Copyright 2015 Tomás Fox
  * Released under the MIT license
  */
 
-(function (root, factory) {
+(function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define([], factory.bind(null, typeof exports === 'object'? this : root));
+    define([], factory.bind(null, typeof exports === 'object' ? this : root));
   } else if (typeof exports === 'object') {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
@@ -19,7 +19,7 @@
     // Browser globals (root is window)
     root.ChromePromise = factory(root);
   }
-}(this, function (root) {
+}(this, function(root) {
   'use strict';
 
   return ChromePromise;
