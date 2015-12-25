@@ -45,7 +45,11 @@
             if (err) {
               reject(err);
             } else {
-              resolve.apply(null, arguments);
+              if (arguments.length === 1) {
+                resolve(arguments[0]);
+              } else {
+                resolve(arguments);
+              }
             }
           }
 
