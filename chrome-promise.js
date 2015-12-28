@@ -22,7 +22,7 @@
 }(this, function(root) {
   'use strict';
   var push = Array.prototype.push,
-      has = Object.prototype.hasOwnProperty;
+      hasOwnProperty = Object.prototype.hasOwnProperty;
 
   return ChromePromise;
 
@@ -64,7 +64,7 @@
 
     function fillProperties(source, target) {
       for (var key in source) {
-        if (has.call(source, key)) {
+        if (hasOwnProperty.call(source, key)) {
           var val = source[key];
           var type = typeof val;
 
