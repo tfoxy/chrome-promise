@@ -45,7 +45,7 @@
             if (err) {
               reject(err);
             } else {
-              if (arguments.length === 1) {
+              if (arguments.length <= 1) {
                 resolve(arguments[0]);
               } else {
                 resolve(arguments);
