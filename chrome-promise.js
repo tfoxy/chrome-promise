@@ -21,6 +21,8 @@
   }
 }(this, function(root) {
   'use strict';
+  var push = Array.prototype.push,
+      hasOwnProperty = Object.prototype.hasOwnProperty;
 
   return ChromePromise;
 
@@ -29,6 +31,8 @@
   function ChromePromise(chrome, Promise) {
     chrome = chrome || root.chrome;
     Promise = Promise || root.Promise;
+
+    var runtime = chrome.runtime;
 
     fillProperties(chrome, this);
 
@@ -41,7 +45,7 @@
 
         return new Promise(function(resolve, reject) {
           function callback() {
-            var err = chrome.runtime.lastError;
+            var err = runtime.lastError;
             if (err) {
               reject(err);
             } else {
@@ -49,7 +53,7 @@
             }
           }
 
-          Array.prototype.push.call(args, callback);
+          push.call(args, callback);
 
           fn.apply(thisArg, args);
         });
@@ -60,7 +64,7 @@
 
     function fillProperties(source, target) {
       for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
+        if (hasOwnProperty.call(source, key)) {
           var val = source[key];
           var type = typeof val;
 
