@@ -21,13 +21,16 @@
     "promise"
   ],
   "devDependencies": {
-    "chai": "*",
-    "chai-as-promised": "*",
-    "mocha": "*",
+    "chai": "~3.5.0",
+    "chai-as-promised": "~5.2.0",
+    "mocha": "~2.4.5",
     "protractor": "0.23.1",
-    "sinon": "*",
-    "sinon-chrome": "0.1.x"
+    "sinon": "~1.17.3",
+    "sinon-chrome": "~0.2.1"
   },
   "author": "Tomás Fox <tomas.c.fox@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "sinon-chrome": "^1.1.2"
+  }
 }

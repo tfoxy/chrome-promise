@@ -26,32 +26,48 @@ describe('ChromePromise', function() {
 
 
   describe('instance', function() {
+    var chromep;
 
     before(function() {
-      chrome.promise = new ChromePromise(chrome);
+      chromep = new ChromePromise(chrome);
     });
 
     it('is an object', function() {
-      expect(chrome.promise).to.be.an('object');
+      expect(chromep).to.be.an('object');
     });
 
     it('has the same constants as chrome', function() {
-      expect(chrome.promise).to.have.deep.property('runtime.id', chrome.runtime.id);
+      expect(chromep).to.have.deep.property('runtime.id', chrome.runtime.id);
     });
 
 
-    describe('tabs.create', function() {
+    describe('.tabs', function() {
 
       it('exists', function() {
-        expect(chrome.promise).to.have.deep.property('tabs.create');
+        expect(chromep).to.have.property('tabs');
+      });
+
+      it('is an object', function() {
+        expect(chromep.tabs).to.be.an('object');
+      });
+
+    });
+
+
+    describe('.tabs.create', function() {
+
+      it('exists', function() {
+        console.log(chromep.tabs);
+        expect(chromep).to.have.deep.property('tabs.create');
       });
 
       it('is a function', function() {
-        expect(chrome.promise.tabs.create).to.be.a('function');
+        console.log('chrome.tabs.query', chrome.tabs.query, typeof chrome.tabs.query, chromep.tabs.query)
+        expect(chromep.tabs.create).to.be.a('function');
       });
 
       it('returns a promise', function() {
-        expect(chrome.promise.tabs.create({})).to.be.an.instanceOf(GLOBAL.Promise);
+        expect(chromep.tabs.create({})).to.be.an.instanceOf(GLOBAL.Promise);
       });
 
 
@@ -63,7 +79,7 @@ describe('ChromePromise', function() {
         before(function() {
           chrome.tabs.create.yields(tab);
 
-          promise = chrome.promise.tabs.create(options);
+          promise = chromep.tabs.create(options);
 
           return promise;
         });
