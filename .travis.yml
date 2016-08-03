@@ -1,6 +1,13 @@
+sudo: required
+dist: trusty
 language: node_js
 node_js:
 - node
+before_install:
+- wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+- sudo dpkg -i google-chrome*.deb
+- chromium-browser --version
+- google-chrome-stable --version
 before_script:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
