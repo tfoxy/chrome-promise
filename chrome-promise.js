@@ -40,16 +40,24 @@
 
     function setPromiseFunction(fn, thisArg) {
 
-      return function() {
-        var args = arguments;
+      return function(...args) {
 
         return new Promise(function(resolve, reject) {
-          function callback() {
+          function callback(...results) {
             var err = runtime.lastError;
             if (err) {
               reject(err);
             } else {
-              resolve.apply(null, arguments);
+              switch (results.length) {
+                case 0:
+                  resolve();
+                  break;
+                case 1:
+                  resolve(results[0]);
+                  break;
+                default:
+                  resolve(results);
+              }
             }
           }
 
