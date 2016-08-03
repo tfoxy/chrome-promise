@@ -65,7 +65,7 @@ describe('ChromePromise', function() {
       });
 
       it('returns a promise', function() {
-        expect(chromep.tabs.create({})).to.be.an.instanceOf(GLOBAL.Promise);
+        expect(chromep.tabs.create({})).to.be.an.instanceOf(Promise);
       });
 
 
