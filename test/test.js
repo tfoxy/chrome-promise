@@ -57,12 +57,10 @@ describe('ChromePromise', function() {
     describe('.tabs.create', function() {
 
       it('exists', function() {
-        console.log(chromep.tabs);
         expect(chromep).to.have.deep.property('tabs.create');
       });
 
       it('is a function', function() {
-        console.log('chrome.tabs.query', chrome.tabs.query, typeof chrome.tabs.query, chromep.tabs.query)
         expect(chromep.tabs.create).to.be.a('function');
       });
 
