@@ -29,7 +29,7 @@ describe('ChromePromise', function() {
     var chromep;
 
     before(function() {
-      chromep = new ChromePromise(chrome);
+      chromep = new ChromePromise({chrome: chrome});
     });
 
     it('is an object', function() {

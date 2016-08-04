@@ -1,5 +1,5 @@
 /*!
- * chrome-promise 1.0.7
+ * chrome-promise 2.0.0
  * https://github.com/tfoxy/chrome-promise
  *
  * Copyright 2015 Tomás Fox
@@ -28,10 +28,10 @@
 
   ////////////////
 
-  function ChromePromise(chrome, Promise) {
-    chrome = chrome || root.chrome;
-    Promise = Promise || root.Promise;
-
+  function ChromePromise(options) {
+    options = options || {};
+    var chrome = options.chrome || root.chrome;
+    var Promise = options.Promise || root.Promise;
     var runtime = chrome.runtime;
 
     fillProperties(chrome, this);
@@ -43,6 +43,10 @@
       return function(...args) {
 
         return new Promise(function(resolve, reject) {
+          push.call(args, callback);
+
+          fn.apply(thisArg, args);
+
           function callback(...results) {
             var err = runtime.lastError;
             if (err) {
@@ -60,10 +64,6 @@
               }
             }
           }
-
-          push.call(args, callback);
-
-          fn.apply(thisArg, args);
         });
 
       };
