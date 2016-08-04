@@ -31,67 +31,75 @@ You can include it in your HTML like this:
 ```
 
 
+## Compatibility
+
+It needs Chrome 46 or higher. If you need to support an older version, please create an issue.
+
+
 ## Examples
-
-Detect languages of all tabs.
-
-```js
-chrome.promise = new ChromePromise();
-
-chrome.promise.tabs.query({}).then(function(tabs) {
-  var promises = tabs.map(function(tab) {
-    return chrome.promise.tabs.detectLanguage(tab.id);
-  });
-  
-  return Promise.all(promises);
-}).then(function(languages) {
-  alert('Languages: ' + languages.join(', '));
-}).catch(function(err) {
-  alert(err.message);
-});
-```
 
 Use local storage.
 
 ```js
-chrome.promise = new ChromePromise();
+const chromep = new ChromePromise();
 
-chrome.promise.storage.local.set({foo: 'bar'}).then(function() {
+chromep.storage.local.set({foo: 'bar'}).then(function() {
   alert('foo set');
-  return chrome.promise.storage.local.get('foo');
+  return chromep.storage.local.get('foo');
 }).then(function(items) {
   alert(JSON.stringify(items)); // => {"foo":"bar"}
+});
+```
+
+Detect languages of all tabs.
+
+```js
+const chromep = new ChromePromise();
+
+chromep.tabs.query({}).then((tabs) => {
+  let promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
+  return Promise.all(promises);
+}).then((languages) => {
+  alert('Languages: ' + languages.join(', '));
+}).catch((err) => {
+  alert(err.message);
 });
 ```
 
 
 ## Options
 
-The constructor accepts two parameters: chrome and Promise.
+The constructor accepts an options parameter with the following properties:
 
-* `chrome` is the chrome API object. By default (or when null or undefined are used), it is the 'chrome' global property. 
+* `chrome`: the chrome API object. By default (or when null or undefined are used), it is the 'chrome' global property. 
 
-* `Promise` is the object used to create promises. By default, it is the 'Promise' global property.
+* `Promise`: the object used to create promises. By default, it is the 'Promise' global property.
 
 
 ## Synchronous-looking code
 
-Starting from Chrome 39, you can use 
+It can be achieved with 
 [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 Using the methods [Q.async](https://github.com/kriskowal/q/wiki/API-Reference#qasyncgeneratorfunction)
 and [Q.spawn](https://github.com/kriskowal/q/wiki/API-Reference#qspawngeneratorfunction)
 from the [Q library](https://github.com/kriskowal/q), the previous examples can be rewritten as:
 
 ```js
-chrome.promise = new ChromePromise();
+const chromep = new ChromePromise();
+
+Q.spawn(function* () {
+  yield chromep.storage.local.set({foo: 'bar'});
+  alert('foo set');
+  let items = yield chromep.storage.local.get('foo');
+  alert(JSON.stringify(items));
+});
 
 // try...catch
 Q.spawn(function* () {
   try {
-    var tabs = yield chrome.promise.tabs.query({});
-    var languages = yield Promise.all(tabs.map(function(tab) {
-      return chrome.promise.tabs.detectLanguage(tab.id);
-    }));
+    let tabs = yield chromep.tabs.query({});
+    let promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
+    let languages = yield Promise.all(promises);
     alert('Languages: ' + languages.join(', '));
   } catch(err) {
     alert(err);
@@ -100,22 +108,15 @@ Q.spawn(function* () {
 
 // promise.catch
 Q.async(function* () {
-  var tabs = yield chrome.promise.tabs.query({});
-  var languages = yield Promise.all(tabs.map(function(tab) {
-    return chrome.promise.tabs.detectLanguage(tab.id);
-  }));
+  let tabs = yield chromep.tabs.query({});
+  let languages = yield Promise.all(tabs.map((tab) => (
+    chromep.tabs.detectLanguage(tab.id);
+  )));
   alert('Languages: ' + languages.join(', '));
 })().catch(function(err) {
   alert(err);
 });
 
-Q.spawn(function* () {
-  yield chrome.promise.storage.local.set({foo: 'bar'});
-  alert('foo set');
-  var items = yield chrome.promise.storage.local.get('foo');
-  alert(JSON.stringify(items));
-});
-
 ```
 
-You can also use the [co library](https://github.com/tj/co) instead of _Q_. 
+You can also use the [co library](https://github.com/tj/co) or async/await instead of _Q_.
