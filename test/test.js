@@ -84,13 +84,33 @@ describe('ChromePromise', function() {
 
         it('calls the callback with the same parameters', function() {
           return promise.then(function() {
-            //noinspection BadExpressionStatementJS
-            expect(chrome.tabs.create.calledWith(options)).to.be.true;
+            expect(chrome.tabs.create.calledWith(options)).to.equal(true);
           });
         });
 
         it('has the same parameter as the callback', function() {
           return expect(promise).to.eventually.equal(tab);
+        });
+
+      });
+
+
+      describe('multiArgs promise', function() {
+        var promise;
+        var tab = {id: 4};
+        var somethingElse = 2;
+        var options = {windowId: 1};
+
+        before(function() {
+          chrome.tabs.create.yields(tab, somethingElse);
+
+          promise = chromep.tabs.create(options);
+
+          return promise;
+        });
+
+        it('has the parameters of the callback as an array', function() {
+          return expect(promise).to.eventually.deep.equal([tab, somethingElse]);
         });
 
       });
