@@ -21,7 +21,7 @@
   }
 }(this, function(root) {
   'use strict';
-  var push = Array.prototype.push,
+  var slice = Array.prototype.slice,
       hasOwnProperty = Object.prototype.hasOwnProperty;
 
   return ChromePromise;
@@ -40,15 +40,17 @@
 
     function setPromiseFunction(fn, thisArg) {
 
-      return function(...args) {
+      return function() {
+        var args = slice.call(arguments);
 
         return new Promise(function(resolve, reject) {
-          push.call(args, callback);
+          args.push(callback);
 
           fn.apply(thisArg, args);
 
-          function callback(...results) {
+          function callback() {
             var err = runtime.lastError;
+            var results = slice.call(arguments);
             if (err) {
               reject(err);
             } else {
