@@ -30,10 +30,17 @@ You can include it in your HTML like this:
 <script type="text/javascript" src="chrome-promise.js"></script>
 ```
 
+Or you can use ES2015 import statement:
+
+```js
+import ChromePromise from 'chrome-promise';
+```
+
 
 ## Compatibility
 
-It needs Chrome 46 or higher. If you need to support an older version, please create an issue.
+It supports Chrome 34 or higher, but it should work in older versions.
+Create an issue if it doesn't work for your version.
 
 
 ## Examples
