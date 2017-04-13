@@ -16,6 +16,12 @@ Use npm
 npm install chrome-promise
 ```
 
+Or yarn
+
+```sh
+yarn add chrome-promise
+```
+
 Or bower
 
 ```sh
@@ -27,7 +33,7 @@ Or download chrome-promise.js file.
 You can include it in your HTML like this:
 
 ```html
-<script type="text/javascript" src="chrome-promise.js"></script>
+<script src="chrome-promise.js"></script>
 ```
 
 Or you can use ES2015 import statement:
@@ -83,9 +89,72 @@ The constructor accepts an options parameter with the following properties:
 * `Promise`: the object used to create promises. By default, it is the 'Promise' global property.
 
 
+## Warnings
+
+This library is not a replacement of the `chrome` api.
+It should be used only for functions that have a callback.
+
+```js
+const chromep = new ChromePromise();
+
+// this returns a rejected promise (because a callback is added to getManifest)
+chromep.runtime.getManifest();
+
+// this works
+chrome.runtime.getManifest();
+```
+
+When there's a callback with multiple parameters,
+the promise will return an array with the callback arguments.
+
+```js
+const chromep = new ChromePromise();
+
+chromep.hid.receive(4).then(function(args) {
+  const reportId = args[0];
+  const data = args[1];
+  console.log(reportId, data);
+});
+
+// Using babel or chrome >= 49
+chromep.hid.receive(4).then(([reportId, data]) => {
+  console.log(reportId, data);
+});
+```
+
+
 ## Synchronous-looking code
 
-It can be achieved with 
+If you are using [babel](https://github.com/babel/babel) or chrome ≥ 55, you can use
+[async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+to achieve this.
+
+```js
+const chromep = new ChromePromise();
+
+async function main() {
+  await chromep.storage.local.set({foo: 'bar'});
+  alert('foo set');
+  const items = await chromep.storage.local.get('foo');
+  alert(JSON.stringify(items));
+}
+main();
+
+// try...catch
+async function main2() {
+  try {
+    const tabs = await chromep.tabs.query({});
+    const promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
+    const languages = await Promise.all(promises);
+    alert('Languages: ' + languages.join(', '));
+  } catch(err) {
+    alert(err);
+  }
+}
+main2();
+```
+
+If you are not using babel and you need to support chrome ≥ 39, it can be done with 
 [generator functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function*).
 Using the methods [Q.async](https://github.com/kriskowal/q/wiki/API-Reference#qasyncgeneratorfunction)
 and [Q.spawn](https://github.com/kriskowal/q/wiki/API-Reference#qspawngeneratorfunction)
@@ -97,16 +166,16 @@ const chromep = new ChromePromise();
 Q.spawn(function* () {
   yield chromep.storage.local.set({foo: 'bar'});
   alert('foo set');
-  let items = yield chromep.storage.local.get('foo');
+  const items = yield chromep.storage.local.get('foo');
   alert(JSON.stringify(items));
 });
 
 // try...catch
 Q.spawn(function* () {
   try {
-    let tabs = yield chromep.tabs.query({});
-    let promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
-    let languages = yield Promise.all(promises);
+    const tabs = yield chromep.tabs.query({});
+    const promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
+    const languages = yield Promise.all(promises);
     alert('Languages: ' + languages.join(', '));
   } catch(err) {
     alert(err);
@@ -115,8 +184,8 @@ Q.spawn(function* () {
 
 // promise.catch
 Q.async(function* () {
-  let tabs = yield chromep.tabs.query({});
-  let languages = yield Promise.all(tabs.map((tab) => (
+  const tabs = yield chromep.tabs.query({});
+  const languages = yield Promise.all(tabs.map((tab) => (
     chromep.tabs.detectLanguage(tab.id);
   )));
   alert('Languages: ' + languages.join(', '));
@@ -126,4 +195,4 @@ Q.async(function* () {
 
 ```
 
-You can also use the [co library](https://github.com/tj/co) or async/await instead of _Q_.
+You can also use the [co library](https://github.com/tj/co) instead of _Q_.
