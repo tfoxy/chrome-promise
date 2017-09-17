@@ -89,7 +89,7 @@ The constructor accepts an options parameter with the following properties:
 * `Promise`: the object used to create promises. By default, it is the 'Promise' global property.
 
 
-## Warnings
+## Notes
 
 This library is not a replacement of the `chrome` api.
 It should be used only for functions that have a callback.
@@ -120,6 +120,23 @@ chromep.hid.receive(4).then(function(args) {
 chromep.hid.receive(4).then(([reportId, data]) => {
   console.log(reportId, data);
 });
+```
+
+Only APIs that are enabled in the manifest will be available in the `ChromePromise` instance.
+If the API is undefined, first check the `permissions` in the `manifest.json` of your project.
+
+```js
+// manifest.json
+{
+  "permissions": [
+    "tabs"
+  ]
+}
+
+// main.js
+const chromep = new ChromePromise();
+console.log(typeof chromep.tabs)  // "object"
+console.log(typeof chromep.bookmarks)  // "undefined"
 ```
 
 
