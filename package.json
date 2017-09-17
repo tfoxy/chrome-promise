@@ -32,7 +32,7 @@
     "chai-as-promised": "~5.2.0",
     "chokidar": "^1.6.1",
     "mocha": "~2.4.5",
-    "protractor": "0.23.1",
+    "protractor": "^5.1.2",
     "sinon": "~1.17.3",
     "sinon-chrome": "~0.2.1",
     "ts-node": "^3.3.0",
