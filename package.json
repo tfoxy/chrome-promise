@@ -2,9 +2,13 @@
   "name": "chrome-promise",
   "version": "2.0.3",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
-  "main": "./chrome-promise",
+  "main": "./chrome-promise.js",
+  "types": "./chrome-promise.d.ts",
   "scripts": {
-    "test": "mocha && protractor"
+    "test": "mocha && protractor",
+    "watch": "node watch.js",
+    "compileTypescript": "tsc type-definitions/create-type-definitions.ts --lib es5,es2015,dom",
+    "createTypeDefinitions": "node type-definitions/create-type-definitions.js node_modules/@types/chrome/index.d.ts > chrome-promise.d.ts"
   },
   "repository": {
     "type": "git",
@@ -21,12 +25,18 @@
     "promise"
   ],
   "devDependencies": {
+    "@types/chrome": "^0.0.48",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^8.0.20",
     "chai": "~3.5.0",
     "chai-as-promised": "~5.2.0",
+    "chokidar": "^1.6.1",
     "mocha": "~2.4.5",
     "protractor": "0.23.1",
     "sinon": "~1.17.3",
-    "sinon-chrome": "~0.2.1"
+    "sinon-chrome": "~0.2.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.4.2"
   },
   "author": "Tomás Fox <tomas.c.fox@gmail.com>",
   "license": "MIT"

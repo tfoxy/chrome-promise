@@ -7,3 +7,10 @@ node_modules/
 *.iws
 # vscode
 .vscode/
+
+# yarn
+yarn-error.log
+
+
+# Project
+type-definitions/*.js
