@@ -7,74 +7,100 @@ export default class ChromePromise {
             chrome?: object;
             Promise?: Function;
         });
-    accessibilityFeatures: chromepApi.AccessibilityFeatures;
-    alarms: chromepApi.Alarms;
-    browser: chromepApi.Browser;
-    bookmarks: chromepApi.Bookmarks;
-    browserAction: chromepApi.BrowserAction;
-    browsingData: chromepApi.BrowsingData;
-    commands: chromepApi.Commands;
-    contentSettings: chromepApi.ContentSettings;
-    contextMenus: chromepApi.ContextMenus;
-    cookies: chromepApi.Cookies;
-    declarativeContent: chromepApi.DeclarativeContent;
-    declarativeWebRequest: chromepApi.DeclarativeWebRequest;
-    desktopCapture: chromepApi.DesktopCapture;
-    documentScan: chromepApi.DocumentScan;
-    downloads: chromepApi.Downloads;
-    events: chromepApi.Events;
-    extension: chromepApi.Extension;
-    fileBrowserHandler: chromepApi.FileBrowserHandler;
-    fileSystemProvider: chromepApi.FileSystemProvider;
-    fontSettings: chromepApi.FontSettings;
-    gcm: chromepApi.Gcm;
-    history: chromepApi.History;
-    i18n: chromepApi.I18n;
-    identity: chromepApi.Identity;
-    idle: chromepApi.Idle;
-    management: chromepApi.Management;
-    notifications: chromepApi.Notifications;
-    omnibox: chromepApi.Omnibox;
-    pageAction: chromepApi.PageAction;
-    pageCapture: chromepApi.PageCapture;
-    permissions: chromepApi.Permissions;
-    platformKeys: chromepApi.PlatformKeys;
-    power: chromepApi.Power;
-    printerProvider: chromepApi.PrinterProvider;
-    privacy: chromepApi.Privacy;
-    proxy: chromepApi.Proxy;
-    runtime: chromepApi.Runtime;
-    scriptBadge: chromepApi.ScriptBadge;
-    sessions: chromepApi.Sessions;
-    storage: chromepApi.Storage;
-    socket: chromepApi.Socket;
-    tabCapture: chromepApi.TabCapture;
-    tabs: chromepApi.Tabs;
-    topSites: chromepApi.TopSites;
-    tts: chromepApi.Tts;
-    ttsEngine: chromepApi.TtsEngine;
-    types: chromepApi.Types;
-    vpnProvider: chromepApi.VpnProvider;
-    wallpaper: chromepApi.Wallpaper;
-    webNavigation: chromepApi.WebNavigation;
-    webRequest: chromepApi.WebRequest;
-    webstore: chromepApi.Webstore;
-    windows: chromepApi.Windows;
+    accessibilityFeatures: chromepApi.accessibilityFeatures.AccessibilityFeatures;
+    alarms: chromepApi.alarms.Alarms;
+    browser: chromepApi.browser.Browser;
+    bookmarks: chromepApi.bookmarks.Bookmarks;
+    browserAction: chromepApi.browserAction.BrowserAction;
+    browsingData: chromepApi.browsingData.BrowsingData;
+    commands: chromepApi.commands.Commands;
+    contentSettings: chromepApi.contentSettings.ContentSettings;
+    contextMenus: chromepApi.contextMenus.ContextMenus;
+    cookies: chromepApi.cookies.Cookies;
+    declarativeContent: chromepApi.declarativeContent.DeclarativeContent;
+    declarativeWebRequest: chromepApi.declarativeWebRequest.DeclarativeWebRequest;
+    desktopCapture: chromepApi.desktopCapture.DesktopCapture;
+    documentScan: chromepApi.documentScan.DocumentScan;
+    downloads: chromepApi.downloads.Downloads;
+    events: chromepApi.events.Events;
+    extension: chromepApi.extension.Extension;
+    fileBrowserHandler: chromepApi.fileBrowserHandler.FileBrowserHandler;
+    fileSystemProvider: chromepApi.fileSystemProvider.FileSystemProvider;
+    fontSettings: chromepApi.fontSettings.FontSettings;
+    gcm: chromepApi.gcm.Gcm;
+    history: chromepApi.history.History;
+    i18n: chromepApi.i18n.I18n;
+    identity: chromepApi.identity.Identity;
+    idle: chromepApi.idle.Idle;
+    management: chromepApi.management.Management;
+    notifications: chromepApi.notifications.Notifications;
+    omnibox: chromepApi.omnibox.Omnibox;
+    pageAction: chromepApi.pageAction.PageAction;
+    pageCapture: chromepApi.pageCapture.PageCapture;
+    permissions: chromepApi.permissions.Permissions;
+    platformKeys: chromepApi.platformKeys.PlatformKeys;
+    power: chromepApi.power.Power;
+    printerProvider: chromepApi.printerProvider.PrinterProvider;
+    privacy: chromepApi.privacy.Privacy;
+    proxy: chromepApi.proxy.Proxy;
+    runtime: chromepApi.runtime.Runtime;
+    scriptBadge: chromepApi.scriptBadge.ScriptBadge;
+    sessions: chromepApi.sessions.Sessions;
+    storage: chromepApi.storage.Storage;
+    socket: chromepApi.socket.Socket;
+    tabCapture: chromepApi.tabCapture.TabCapture;
+    tabs: chromepApi.tabs.Tabs;
+    topSites: chromepApi.topSites.TopSites;
+    tts: chromepApi.tts.Tts;
+    ttsEngine: chromepApi.ttsEngine.TtsEngine;
+    types: chromepApi.types.Types;
+    vpnProvider: chromepApi.vpnProvider.VpnProvider;
+    wallpaper: chromepApi.wallpaper.Wallpaper;
+    webNavigation: chromepApi.webNavigation.WebNavigation;
+    webRequest: chromepApi.webRequest.WebRequest;
+    webstore: chromepApi.webstore.Webstore;
+    windows: chromepApi.windows.Windows;
 }
-declare namespace chromepApi {
-    /**
-     * Use the chrome.accessibilityFeatures API to manage Chrome's accessibility features. This API relies on the ChromeSetting prototype of the type API for getting and setting individual accessibility features. In order to get feature states the extension must request accessibilityFeatures.read permission. For modifying feature state, the extension needs accessibilityFeatures.modify permission. Note that accessibilityFeatures.modify does not imply accessibilityFeatures.read permission.
-     * Availability: Since Chrome 37.
-     * Permissions: "accessibilityFeatures.read"
-     * Important: This API works only on Chrome OS.
-     */
-    export interface AccessibilityFeatures {
+declare namespace chromepApi.accessibilityFeatures {
+    interface AccessibilityFeaturesSetting {
+        /**
+                 * Gets the value of a setting.
+                 * @param details Which setting to consider.
+                 * @param callback The callback parameter should be a function that looks like this:
+                 * function(object details) {...};
+                 */
+        get(details: chrome.accessibilityFeatures.AccessibilityFeaturesGetArg): Promise<chrome.accessibilityFeatures.AccessibilityFeaturesCallbackArg>;
+        /**
+                 * Sets the value of a setting.
+                 * @param details Which setting to change.
+                 * @param callback Called at the completion of the set operation.
+                 * If you specify the callback parameter, it should be a function that looks like this:
+                 * function() {...};
+                 */
+        set(details: chrome.accessibilityFeatures.AccessibilityFeaturesSetArg): Promise<void>;
+        /**
+                 * Clears the setting, restoring any default value.
+                 * @param details Which setting to clear.
+                 * @param callback Called at the completion of the clear operation.
+                 * If you specify the callback parameter, it should be a function that looks like this:
+                 * function() {...};
+                 */
+        clear(details: chrome.accessibilityFeatures.AccessibilityFeaturesClearArg): Promise<void>;
     }
-    /**
-     * Use the chrome.alarms API to schedule code to run periodically or at a specified time in the future.
-     * Availability: Since Chrome 22.
-     * Permissions:  "alarms"
-     */
+    export interface AccessibilityFeatures {
+        spokenFeedback: AccessibilityFeaturesSetting;
+        largeCursor: AccessibilityFeaturesSetting;
+        stickyKeys: AccessibilityFeaturesSetting;
+        highContrast: AccessibilityFeaturesSetting;
+        screenMagnifier: AccessibilityFeaturesSetting;
+        autoclick: AccessibilityFeaturesSetting;
+        virtualKeyboard: AccessibilityFeaturesSetting;
+        animationPolicy: AccessibilityFeaturesSetting;
+    }
+}
+declare namespace chromepApi.alarms {
+    interface AlarmEvent extends chrome.events.Event<(alarm: chrome.alarms.Alarm) => void> {
+    }
     export interface Alarms {
         /**
              * Gets an array of all the alarms.
@@ -114,11 +140,10 @@ declare namespace chromepApi {
              * function( Alarm alarm) {...};
              */
         get(name: string): Promise<chrome.alarms.Alarm>;
+        onAlarm: AlarmEvent;
     }
-    /**
-     * Use the chrome.browser API to interact with the Chrome browser associated with
-     * the current application and Chrome profile.
-     */
+}
+declare namespace chromepApi.browser {
     export interface Browser {
         /**
              * Opens a new tab in a browser window associated with the current application
@@ -130,11 +155,22 @@ declare namespace chromepApi {
              */
         openTab(options: chrome.browser.Options): Promise<void>;
     }
-    /**
-     * Use the chrome.bookmarks API to create, organize, and otherwise manipulate bookmarks. Also see Override Pages, which you can use to create a custom Bookmark Manager page.
-     * Availability: Since Chrome 5.
-     * Permissions:  "bookmarks"
-     */
+}
+declare namespace chromepApi.bookmarks {
+    interface BookmarkRemovedEvent extends chrome.events.Event<(id: string, removeInfo: chrome.bookmarks.BookmarkRemoveInfo) => void> {
+    }
+    interface BookmarkImportEndedEvent extends chrome.events.Event<() => void> {
+    }
+    interface BookmarkImportBeganEvent extends chrome.events.Event<() => void> {
+    }
+    interface BookmarkChangedEvent extends chrome.events.Event<(id: string, changeInfo: chrome.bookmarks.BookmarkChangeInfo) => void> {
+    }
+    interface BookmarkMovedEvent extends chrome.events.Event<(id: string, moveInfo: chrome.bookmarks.BookmarkMoveInfo) => void> {
+    }
+    interface BookmarkCreatedEvent extends chrome.events.Event<(id: string, bookmark: chrome.bookmarks.BookmarkTreeNode) => void> {
+    }
+    interface BookmarkChildrenReordered extends chrome.events.Event<(id: string, reorderInfo: chrome.bookmarks.BookmarkReorderInfo) => void> {
+    }
     export interface Bookmarks {
         /**
              * Searches for BookmarkTreeNodes matching the given query. Queries specified with an object produce BookmarkTreeNodes matching all specified properties.
@@ -221,12 +257,18 @@ declare namespace chromepApi {
              * function() {...};
              */
         removeTree(id: string): Promise<void>;
+        onRemoved: BookmarkRemovedEvent;
+        onImportEnded: BookmarkImportEndedEvent;
+        onImportBegan: BookmarkImportBeganEvent;
+        onChanged: BookmarkChangedEvent;
+        onMoved: BookmarkMovedEvent;
+        onCreated: BookmarkCreatedEvent;
+        onChildrenReordered: BookmarkChildrenReordered;
     }
-    /**
-     * Use browser actions to put icons in the main Google Chrome toolbar, to the right of the address bar. In addition to its icon, a browser action can also have a tooltip, a badge, and a popup.
-     * Availability: Since Chrome 5.
-     * Manifest:  "browser_action": {...}
-     */
+}
+declare namespace chromepApi.browserAction {
+    interface BrowserClickedEvent extends chrome.events.Event<(tab: chrome.tabs.Tab) => void> {
+    }
     export interface BrowserAction {
         /**
              * Since Chrome 19.
@@ -262,12 +304,10 @@ declare namespace chromepApi {
              * function() {...};
              */
         setIcon(details: chrome.browserAction.TabIconDetails): Promise<void>;
+        onClicked: BrowserClickedEvent;
     }
-    /**
-     * Use the chrome.browsingData API to remove browsing data from a user's local profile.
-     * Availability: Since Chrome 19.
-     * Permissions:  "browsingData"
-     */
+}
+declare namespace chromepApi.browsingData {
     export interface BrowsingData {
         /**
              * Since Chrome 26.
@@ -369,11 +409,10 @@ declare namespace chromepApi {
              */
         removeIndexedDB(options: chrome.browsingData.RemovalOptions): Promise<void>;
     }
-    /**
-     * Use the commands API to add keyboard shortcuts that trigger actions in your extension, for example, an action to open the browser action or send a command to the extension.
-     * Availability: Since Chrome 25.
-     * Manifest:  "commands": {...}
-     */
+}
+declare namespace chromepApi.commands {
+    interface CommandEvent extends chrome.events.Event<(command: string) => void> {
+    }
     export interface Commands {
         /**
              * Returns all the registered extension commands for this extension and their shortcut (if active).
@@ -382,19 +421,53 @@ declare namespace chromepApi {
              * function(array of Command commands) {...};
              */
         getAll(): Promise<chrome.commands.Command[]>;
+        onCommand: CommandEvent;
     }
-    /**
-     * Use the chrome.contentSettings API to change settings that control whether websites can use features such as cookies, JavaScript, and plugins. More generally speaking, content settings allow you to customize Chrome's behavior on a per-site basis instead of globally.
-     * Availability: Since Chrome 16.
-     * Permissions:  "contentSettings"
-     */
+}
+declare namespace chromepApi.contentSettings {
+    interface ContentSetting {
+        /**
+                 * Clear all content setting rules set by this extension.
+                 * @param callback If you specify the callback parameter, it should be a function that looks like this:
+                 * function() {...};
+                 */
+        clear(details: chrome.contentSettings.ClearDetails): Promise<void>;
+        /**
+                 * Applies a new content setting rule.
+                 * @param callback If you specify the callback parameter, it should be a function that looks like this:
+                 * function() {...};
+                 */
+        set(details: chrome.contentSettings.SetDetails): Promise<void>;
+        /**
+                 * @param callback The callback parameter should be a function that looks like this:
+                 * function(array of ResourceIdentifier resourceIdentifiers) {...};
+                 * Parameter resourceIdentifiers: A list of resource identifiers for this content type, or undefined if this content type does not use resource identifiers.
+                 */
+        getResourceIdentifiers(): Promise<chrome.contentSettings.ResourceIdentifier[]>;
+        /**
+                 * Gets the current content setting for a given pair of URLs.
+                 * @param callback The callback parameter should be a function that looks like this:
+                 * function(object details) {...};
+                 */
+        get(details: chrome.contentSettings.GetDetails): Promise<chrome.contentSettings.ReturnedDetails>;
+    }
     export interface ContentSettings {
+        cookies: ContentSetting;
+        popups: ContentSetting;
+        javascript: ContentSetting;
+        notifications: ContentSetting;
+        plugins: ContentSetting;
+        images: ContentSetting;
+        location: ContentSetting;
+        fullscreen: ContentSetting;
+        mouselock: ContentSetting;
+        unsandboxedPlugins: ContentSetting;
+        automaticDownloads: ContentSetting;
     }
-    /**
-     * Use the chrome.contextMenus API to add items to Google Chrome's context menu. You can choose what types of objects your context menu additions apply to, such as images, hyperlinks, and pages.
-     * Availability: Since Chrome 6.
-     * Permissions:  "contextMenus"
-     */
+}
+declare namespace chromepApi.contextMenus {
+    interface MenuClickedEvent extends chrome.events.Event<(info: chrome.contextMenus.OnClickData, tab?: chrome.tabs.Tab) => void> {
+    }
     export interface ContextMenus {
         /**
              * Removes all context menu items added by this extension.
@@ -444,12 +517,12 @@ declare namespace chromepApi {
              * function() {...};
              */
         remove(menuItemId: number): Promise<void>;
+        onClicked: MenuClickedEvent;
     }
-    /**
-     * Use the chrome.cookies API to query and modify cookies, and to be notified when they change.
-     * Availability: Since Chrome 6.
-     * Permissions:  "cookies", host permissions
-     */
+}
+declare namespace chromepApi.cookies {
+    interface CookieChangedEvent extends chrome.events.Event<(changeInfo: chrome.cookies.CookieChangeInfo) => void> {
+    }
     export interface Cookies {
         /**
              * Lists all existing cookie stores.
@@ -489,21 +562,21 @@ declare namespace chromepApi {
              * Parameter cookie: Contains details about the cookie. This parameter is null if no such cookie was found.
              */
         get(details: chrome.cookies.Details): Promise<chrome.cookies.Cookie | null>;
+        onChanged: CookieChangedEvent;
     }
-    /**
-     * The chrome.debugger API serves as an alternate transport for Chrome's remote debugging protocol. Use chrome.debugger to attach to one or more tabs to instrument network interaction, debug JavaScript, mutate the DOM and CSS, etc. Use the Debuggee tabId to target tabs with sendCommand and route events by tabId from onEvent callbacks.
-     * Availability: Since Chrome 18.
-     * Permissions:  "debugger"
-     */
+}
+declare namespace chromepApi.declarativeContent {
     export interface DeclarativeContent {
     }
-    export interface DeclarativeWebRequest {
+}
+declare namespace chromepApi.declarativeWebRequest {
+    interface RequestedEvent extends chrome.events.Event<Function> {
     }
-    /**
-     * Desktop Capture API that can be used to capture content of screen, individual windows or tabs.
-     * Availability: Since Chrome 34.
-     * Permissions:  "desktopCapture"
-     */
+    export interface DeclarativeWebRequest {
+        onRequest: RequestedEvent;
+    }
+}
+declare namespace chromepApi.desktopCapture {
     export interface DesktopCapture {
         /**
              * Shows desktop media picker UI with the specified set of sources.
@@ -523,12 +596,8 @@ declare namespace chromepApi {
              */
         chooseDesktopMedia(sources: string[], targetTab: chrome.tabs.Tab): Promise<string>;
     }
-    /**
-     * Use the chrome.documentScan API to discover and retrieve images from attached paper document scanners.
-     * Availability: Since Chrome 44.
-     * Permissions:  "documentScan"
-     * Important: This API works only on Chrome OS.
-     */
+}
+declare namespace chromepApi.documentScan {
     export interface DocumentScan {
         /**
              * Performs a document scan. On success, the PNG data will be sent to the callback.
@@ -539,11 +608,16 @@ declare namespace chromepApi {
              */
         scan(options: chrome.documentScan.DocumentScanOptions): Promise<chrome.documentScan.DocumentScanCallbackArg>;
     }
-    /**
-     * Use the chrome.downloads API to programmatically initiate, monitor, manipulate, and search for downloads.
-     * Availability: Since Chrome 31.
-     * Permissions:  "downloads"
-     */
+}
+declare namespace chromepApi.downloads {
+    interface DownloadChangedEvent extends chrome.events.Event<(downloadDelta: chrome.downloads.DownloadDelta) => void> {
+    }
+    interface DownloadCreatedEvent extends chrome.events.Event<(downloadItem: chrome.downloads.DownloadItem) => void> {
+    }
+    interface DownloadErasedEvent extends chrome.events.Event<(downloadId: number) => void> {
+    }
+    interface DownloadDeterminingFilenameEvent extends chrome.events.Event<(downloadItem: chrome.downloads.DownloadItem, suggest: (suggestion?: chrome.downloads.DownloadFilenameSuggestion) => void) => void> {
+    }
     export interface Downloads {
         /**
              * Find DownloadItem. Set query to the empty object to get all DownloadItem. To get a specific DownloadItem, set only the id field. To page through a large number of items, set orderBy: ['-startTime'], set limit to the number of items per page, and set startedAfter to the startTime of the last item from the last page.
@@ -619,18 +693,21 @@ declare namespace chromepApi {
              * function() {...};
              */
         acceptDanger(downloadId: number): Promise<void>;
+        onChanged: DownloadChangedEvent;
+        onCreated: DownloadCreatedEvent;
+        onErased: DownloadErasedEvent;
+        onDeterminingFilename: DownloadDeterminingFilenameEvent;
     }
-    /**
-     * The chrome.events namespace contains common types used by APIs dispatching events to notify you when something interesting happens.
-     * Availability: Since Chrome 21.
-     */
+}
+declare namespace chromepApi.events {
     export interface Events {
     }
-    /**
-     * The chrome.extension API has utilities that can be used by any extension page. It includes support for exchanging messages between an extension and its content scripts or between extensions, as described in detail in Message Passing.
-     * Availability: Since Chrome 5.
-     */
+}
+declare namespace chromepApi.extension {
+    interface LastError {
+    }
     export interface Extension {
+        lastError: LastError;
         /**
              * Retrieves the state of the extension's access to the 'file://' scheme (as determined by the user-controlled 'Allow access to File URLs' checkbox.
              * Since Chrome 12.
@@ -648,12 +725,10 @@ declare namespace chromepApi {
              */
         isAllowedIncognitoAccess(): Promise<boolean>;
     }
-    /**
-     * Use the chrome.fileBrowserHandler API to extend the Chrome OS file browser. For example, you can use this API to enable users to upload files to your website.
-     * Availability: Since Chrome 12.
-     * Permissions:  "fileBrowserHandler"
-     * Important: This API works only on Chrome OS.
-     */
+}
+declare namespace chromepApi.fileBrowserHandler {
+    interface FileBrowserHandlerExecuteEvent extends chrome.events.Event<(id: string, details: chrome.fileBrowserHandler.FileHandlerExecuteEventDetails) => void> {
+    }
     export interface FileBrowserHandler {
         /**
              * Prompts user to select file path under which file should be saved. When the file is selected, file access permission required to use the file (read, write and create) are granted to the caller. The file will not actually get created during the function call, so function caller must ensure its existence before using it. The function has to be invoked with a user gesture.
@@ -665,13 +740,38 @@ declare namespace chromepApi {
              * Parameter result: Result of the method.
              */
         selectFile(selectionParams: chrome.fileBrowserHandler.SelectionParams): Promise<chrome.fileBrowserHandler.SelectionResult>;
+        onExecute: FileBrowserHandlerExecuteEvent;
     }
-    /**
-     * Use the chrome.fileSystemProvider API to create file systems, that can be accessible from the file manager on Chrome OS.
-     * Availability: Since Chrome 40.
-     * Permissions:  "fileSystemProvider"
-     * Important: This API works only on Chrome OS.
-     */
+}
+declare namespace chromepApi.fileSystemProvider {
+    interface RequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.RequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface MetadataRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.MetadataRequestedEventOptions, successCallback: (metadata: chrome.fileSystemProvider.EntryMetadata) => void, errorCallback: (error: string) => void) => void> {
+    }
+    interface DirectoryPathRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.DirectoryPathRequestedEventOptions, successCallback: (entries: chrome.fileSystemProvider.EntryMetadata[], hasMore: boolean) => void, errorCallback: (error: string) => void) => void> {
+    }
+    interface OpenFileRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.OpenFileRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface OpenedFileRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.OpenedFileRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface OpenedFileOffsetRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.OpenedFileOffsetRequestedEventOptions, successCallback: (data: ArrayBuffer, hasMore: boolean) => void, errorCallback: (error: string) => void) => void> {
+    }
+    interface DirectoryPathRecursiveRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.DirectoryPathRecursiveRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface EntryPathRecursiveRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.EntryPathRecursiveRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface FilePathRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.FilePathRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface SourceTargetPathRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.SourceTargetPathRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface FilePathLengthRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.FilePathLengthRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface OpenedFileIoRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.OpenedFileIoRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface OperationRequestedEvent extends chrome.events.Event<(options: chrome.fileSystemProvider.OperationRequestedEventOptions, successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
+    interface OptionlessRequestedEvent extends chrome.events.Event<(successCallback: Function, errorCallback: (error: string) => void) => void> {
+    }
     export interface FileSystemProvider {
         /**
              * Mounts a file system with the given fileSystemId and displayName. displayName will be shown in the left panel of Files.app. displayName can contain any characters including '/', but cannot be an empty string. displayName must be descriptive but doesn't have to be unique. The fileSystemId must not be an empty string.
@@ -717,12 +817,35 @@ declare namespace chromepApi {
              * function() {...};
              */
         notify(options: chrome.fileSystemProvider.NotificationOptions): Promise<void>;
+        onUnmountRequested: RequestedEvent;
+        onGetMetadataRequested: MetadataRequestedEvent;
+        onReadDirectoryRequested: DirectoryPathRequestedEvent;
+        onOpenFileRequested: OpenFileRequestedEvent;
+        onCloseFileRequested: OpenedFileRequestedEvent;
+        onReadFileRequested: OpenedFileOffsetRequestedEvent;
+        onCreateDirectoryRequested: DirectoryPathRecursiveRequestedEvent;
+        onDeleteEntryRequested: EntryPathRecursiveRequestedEvent;
+        onCreateFileRequested: FilePathRequestedEvent;
+        onCopyEntryRequested: SourceTargetPathRequestedEvent;
+        onMoveEntryRequested: SourceTargetPathRequestedEvent;
+        onTruncateRequested: FilePathLengthRequestedEvent;
+        onWriteFileRequested: OpenedFileIoRequestedEvent;
+        onAbortRequested: OperationRequestedEvent;
+        onConfigureRequested: RequestedEvent;
+        onMountRequested: OptionlessRequestedEvent;
+        onAddWatcherRequested: EntryPathRecursiveRequestedEvent;
+        onRemoveWatcherRequested: EntryPathRecursiveRequestedEvent;
     }
-    /**
-     * Use the chrome.fontSettings API to manage Chrome's font settings.
-     * Availability: Since Chrome 22.
-     * Permissions:  "fontSettings"
-     */
+}
+declare namespace chromepApi.fontSettings {
+    interface DefaultFixedFontSizeChangedEvent extends chrome.events.Event<(details: chrome.fontSettings.FontSizeDetails) => void> {
+    }
+    interface DefaultFontSizeChangedEvent extends chrome.events.Event<(details: chrome.fontSettings.FontSizeDetails) => void> {
+    }
+    interface MinimumFontSizeChangedEvent extends chrome.events.Event<(details: chrome.fontSettings.FontSizeDetails) => void> {
+    }
+    interface FontChangedEvent extends chrome.events.Event<(details: chrome.fontSettings.FullFontDetails) => void> {
+    }
     export interface FontSettings {
         /**
              * Sets the default font size.
@@ -808,12 +931,19 @@ declare namespace chromepApi {
              * function() {...};
              */
         clearDefaultFixedFontSize(details: Object): Promise<void>;
+        onDefaultFixedFontSizeChanged: DefaultFixedFontSizeChangedEvent;
+        onDefaultFontSizeChanged: DefaultFontSizeChangedEvent;
+        onMinimumFontSizeChanged: MinimumFontSizeChangedEvent;
+        onFontChanged: FontChangedEvent;
     }
-    /**
-     * Use chrome.gcm to enable apps and extensions to send and receive messages through the Google Cloud Messaging Service.
-     * Availability: Since Chrome 35.
-     * Permissions:  "gcm"
-     */
+}
+declare namespace chromepApi.gcm {
+    interface MessageReceptionEvent extends chrome.events.Event<(message: chrome.gcm.IncomingMessage) => void> {
+    }
+    interface MessageDeletionEvent extends chrome.events.Event<() => void> {
+    }
+    interface GcmErrorEvent extends chrome.events.Event<(error: chrome.gcm.GcmError) => void> {
+    }
     export interface Gcm {
         /**
              * Registers the application with GCM. The registration ID will be returned by the callback. If register is called again with the same list of senderIds, the same registration ID will be returned.
@@ -840,12 +970,16 @@ declare namespace chromepApi {
              * Parameter messageId: The ID of the message that the callback was issued for.
              */
         send(message: chrome.gcm.OutgoingMessage): Promise<string>;
+        onMessage: MessageReceptionEvent;
+        onMessagesDeleted: MessageDeletionEvent;
+        onSendError: GcmErrorEvent;
     }
-    /**
-     * Use the chrome.history API to interact with the browser's record of visited pages. You can add, remove, and query for URLs in the browser's history. To override the history page with your own version, see Override Pages.
-     * Availability: Since Chrome 5.
-     * Permissions:  "history"
-     */
+}
+declare namespace chromepApi.history {
+    interface HistoryVisitedEvent extends chrome.events.Event<(result: chrome.history.HistoryItem) => void> {
+    }
+    interface HistoryVisitRemovedEvent extends chrome.events.Event<(removed: chrome.history.RemovedResult) => void> {
+    }
     export interface History {
         /**
              * Searches the history for the last visit time of each page matching the query.
@@ -883,11 +1017,11 @@ declare namespace chromepApi {
              * function() {...};
              */
         deleteUrl(details: chrome.history.Url): Promise<void>;
+        onVisited: HistoryVisitedEvent;
+        onVisitRemoved: HistoryVisitRemovedEvent;
     }
-    /**
-     * Use the chrome.i18n infrastructure to implement internationalization across your whole app or extension.
-     * @since Chrome 5.
-     */
+}
+declare namespace chromepApi.i18n {
     export interface I18n {
         /**
              * Gets the accept-languages of the browser. This is different from the locale used by the browser; to get the locale, use i18n.getUILanguage.
@@ -902,11 +1036,10 @@ declare namespace chromepApi {
              */
         detectLanguage(text: string): Promise<chrome.i18n.LanguageDetectionResult>;
     }
-    /**
-     * Use the chrome.identity API to get OAuth2 access tokens.
-     * Permissions:  "identity"
-     * @since Chrome 29.
-     */
+}
+declare namespace chromepApi.identity {
+    interface SignInChangeEvent extends chrome.events.Event<(account: chrome.identity.AccountInfo, signedIn: boolean) => void> {
+    }
     export interface Identity {
         /**
              * Retrieves a list of AccountInfo objects describing the accounts present on the profile.
@@ -949,12 +1082,12 @@ declare namespace chromepApi {
              * function(string responseUrl) {...};
              */
         launchWebAuthFlow(details: chrome.identity.WebAuthFlowOptions): Promise<string>;
+        onSignInChanged: SignInChangeEvent;
     }
-    /**
-     * Use the chrome.idle API to detect when the machine's idle state changes.
-     * Permissions:  "idle"
-     * @since Chrome 6.
-     */
+}
+declare namespace chromepApi.idle {
+    interface IdleStateChangedEvent extends chrome.events.Event<(newState: string) => void> {
+    }
     export interface Idle {
         /**
              * Returns "locked" if the system is locked, "idle" if the user has not generated any input for a specified number of seconds, or "active" otherwise.
@@ -964,12 +1097,18 @@ declare namespace chromepApi {
              * function( IdleState newState) {...};
              */
         queryState(detectionIntervalInSeconds: number): Promise<string>;
+        onStateChanged: IdleStateChangedEvent;
     }
-    /**
-     * The chrome.management API provides ways to manage the list of extensions/apps that are installed and running. It is particularly useful for extensions that override the built-in New Tab page.
-     * Permissions:  "management"
-     * @since Chrome 8.
-     */
+}
+declare namespace chromepApi.management {
+    interface ManagementDisabledEvent extends chrome.events.Event<(info: chrome.management.ExtensionInfo) => void> {
+    }
+    interface ManagementUninstalledEvent extends chrome.events.Event<(id: string) => void> {
+    }
+    interface ManagementInstalledEvent extends chrome.events.Event<(info: chrome.management.ExtensionInfo) => void> {
+    }
+    interface ManagementEnabledEvent extends chrome.events.Event<(info: chrome.management.ExtensionInfo) => void> {
+    }
     export interface Management {
         /**
              * Enables or disables an app or extension.
@@ -1080,13 +1219,29 @@ declare namespace chromepApi {
              * function( ExtensionInfo result) {...};
              */
         generateAppForLink(url: string, title: string): Promise<chrome.management.ExtensionInfo>;
+        onDisabled: ManagementDisabledEvent;
+        onUninstalled: ManagementUninstalledEvent;
+        onInstalled: ManagementInstalledEvent;
+        onEnabled: ManagementEnabledEvent;
     }
-    /**
-     * Use the chrome.notifications API to create rich notifications using templates and show these notifications to users in the system tray.
-     * Permissions:  "notifications"
-     * @since Chrome 28.
-     */
+}
+declare namespace chromepApi.notifications {
+    interface NotificationClosedEvent extends chrome.events.Event<(notificationId: string, byUser: boolean) => void> {
+    }
+    interface NotificationClickedEvent extends chrome.events.Event<(notificationId: string) => void> {
+    }
+    interface NotificationButtonClickedEvent extends chrome.events.Event<(notificationId: string, buttonIndex: number) => void> {
+    }
+    interface NotificationPermissionLevelChangedEvent extends chrome.events.Event<(level: string) => void> {
+    }
+    interface NotificationShowSettingsEvent extends chrome.events.Event<() => void> {
+    }
     export interface Notifications {
+        onClosed: NotificationClosedEvent;
+        onClicked: NotificationClickedEvent;
+        onButtonClicked: NotificationButtonClickedEvent;
+        onPermissionLevelChanged: NotificationPermissionLevelChangedEvent;
+        onShowSettings: NotificationShowSettingsEvent;
         /**
              * Creates and displays a notification.
              * @param notificationId Identifier of the notification. If not set or empty, an ID will automatically be generated. If it matches an existing notification, this method first clears that notification before proceeding with the create operation.
@@ -1145,18 +1300,26 @@ declare namespace chromepApi {
              */
         getPermissionLevel(): Promise<string>;
     }
-    /**
-     * The omnibox API allows you to register a keyword with Google Chrome's address bar, which is also known as the omnibox.
-     * Manifest:  "omnibox": {...}
-     * @since Chrome 9.
-     */
-    export interface Omnibox {
+}
+declare namespace chromepApi.omnibox {
+    interface OmniboxInputEnteredEvent extends chrome.events.Event<(text: string) => void> {
     }
-    /**
-     * Use the chrome.pageAction API to put icons inside the address bar. Page actions represent actions that can be taken on the current page, but that aren't applicable to all pages.
-     * Manifest:  "page_action": {...}
-     * @since Chrome 5.
-     */
+    interface OmniboxInputChangedEvent extends chrome.events.Event<(text: string, suggest: (suggestResults: chrome.omnibox.SuggestResult[]) => void) => void> {
+    }
+    interface OmniboxInputStartedEvent extends chrome.events.Event<() => void> {
+    }
+    interface OmniboxInputCancelledEvent extends chrome.events.Event<() => void> {
+    }
+    export interface Omnibox {
+        onInputEntered: OmniboxInputEnteredEvent;
+        onInputChanged: OmniboxInputChangedEvent;
+        onInputStarted: OmniboxInputStartedEvent;
+        onInputCancelled: OmniboxInputCancelledEvent;
+    }
+}
+declare namespace chromepApi.pageAction {
+    interface PageActionClickedEvent extends chrome.events.Event<(tab: chrome.tabs.Tab) => void> {
+    }
     export interface PageAction {
         /**
              * Gets the title of the page action.
@@ -1178,12 +1341,10 @@ declare namespace chromepApi {
              * function() {...};
              */
         setIcon(details: chrome.pageAction.IconDetails): Promise<void>;
+        onClicked: PageActionClickedEvent;
     }
-    /**
-     * Use the chrome.pageCapture API to save a tab as MHTML.
-     * Permissions:  "pageCapture"
-     * @since Chrome 18.
-     */
+}
+declare namespace chromepApi.pageCapture {
     export interface PageCapture {
         /**
              * Saves the content of the tab with given id as MHTML.
@@ -1194,10 +1355,24 @@ declare namespace chromepApi {
              */
         saveAsMHTML(details: chrome.pageCapture.SaveDetails): Promise<any>;
     }
-    /**
-     * Use the chrome.permissions API to request declared optional permissions at run time rather than install time, so users understand why the permissions are needed and grant only those that are necessary.
-     * @since Chrome 16.
-     */
+}
+declare namespace chromepApi.permissions {
+    interface PermissionsRemovedEvent {
+        /**
+                 * @param callback The callback parameter should be a function that looks like this:
+                 * function( Permissions permissions) {...};
+                 * Parameter permissions: The permissions that have been removed.
+                 */
+        addListener(): Promise<chrome.permissions.Permissions>;
+    }
+    interface PermissionsAddedEvent {
+        /**
+                 * @param callback The callback parameter should be a function that looks like this:
+                 * function( Permissions permissions) {...};
+                 * Parameter permissions: The newly acquired permissions.
+                 */
+        addListener(): Promise<chrome.permissions.Permissions>;
+    }
     export interface Permissions {
         /**
              * Checks if the extension has the specified permissions.
@@ -1227,13 +1402,11 @@ declare namespace chromepApi {
              * Parameter removed: True if the permissions were removed.
              */
         remove(permissions: chrome.permissions.Permissions): Promise<boolean>;
+        onRemoved: PermissionsRemovedEvent;
+        onAdded: PermissionsAddedEvent;
     }
-    /**
-     * Use the chrome.platformKeys API to access client certificates managed by the platform. If the user or policy grants the permission, an extension can use such a certficate in its custom authentication protocol. E.g. this allows usage of platform managed certificates in third party VPNs (see chrome.vpnProvider).
-     * Permissions:  "platformKeys"
-     * Important: This API works only on Chrome OS.
-     * @since Chrome 45.
-     */
+}
+declare namespace chromepApi.platformKeys {
     export interface PlatformKeys {
         /**
              * This function filters from a list of client certificates the ones that are known to the platform, match request and for which the extension has permission to access the certificate and its private key. If interactive is true, the user is presented a dialog where he can select from matching certificates and grant the extension access to the certificate. The selected/filtered client certificates will be passed to callback.
@@ -1259,39 +1432,60 @@ declare namespace chromepApi {
              */
         verifyTLSServerCertificate(details: chrome.platformKeys.ServerCertificateVerificationDetails): Promise<chrome.platformKeys.ServerCertificateVerificationResult>;
     }
-    /**
-     * Use the chrome.power API to override the system's power management features.
-     * Permissions:  "power"
-     * @since Chrome 27.
-     */
+}
+declare namespace chromepApi.power {
     export interface Power {
     }
-    /**
-     * The chrome.printerProvider API exposes events used by print manager to query printers controlled by extensions, to query their capabilities and to submit print jobs to these printers.
-     * Permissions:  "printerProvider"
-     * @since Chrome 44.
-     */
+}
+declare namespace chromepApi.printerProvider {
+    interface PrinterRequestedEvent extends chrome.events.Event<(resultCallback: (printerInfo: chrome.printerProvider.PrinterInfo[]) => void) => void> {
+    }
+    interface PrinterInfoRequestedEvent extends chrome.events.Event<(device: any, resultCallback: (printerInfo?: chrome.printerProvider.PrinterInfo) => void) => void> {
+    }
+    interface CapabilityRequestedEvent extends chrome.events.Event<(printerId: string, resultCallback: (capabilities: chrome.printerProvider.PrinterCapabilities) => void) => void> {
+    }
+    interface PrintRequestedEvent extends chrome.events.Event<(printJob: chrome.printerProvider.PrintJob, resultCallback: (result: string) => void) => void> {
+    }
     export interface PrinterProvider {
+        onGetPrintersRequested: PrinterRequestedEvent;
+        onGetUsbPrinterInfoRequested: PrinterInfoRequestedEvent;
+        onGetCapabilityRequested: CapabilityRequestedEvent;
+        onPrintRequested: PrintRequestedEvent;
     }
-    /**
-     * Use the chrome.privacy API to control usage of the features in Chrome that can affect a user's privacy. This API relies on the ChromeSetting prototype of the type API for getting and setting Chrome's configuration.
-     * Permissions:  "privacy"
-     * The Chrome Privacy Whitepaper gives background detail regarding the features which this API can control.
-     * @since Chrome 18.
-     */
+}
+declare namespace chromepApi.privacy {
+    interface Services {
+    }
+    interface Network {
+    }
+    interface Websites {
+    }
     export interface Privacy {
+        services: Services;
+        network: Network;
+        websites: Websites;
     }
-    /**
-     * Use the chrome.proxy API to manage Chrome's proxy settings. This API relies on the ChromeSetting prototype of the type API for getting and setting the proxy configuration.
-     * Permissions:  "proxy"
-     * @since Chrome 13.
-     */
+}
+declare namespace chromepApi.proxy {
+    interface ProxyErrorEvent extends chrome.events.Event<(details: chrome.proxy.ErrorDetails) => void> {
+    }
     export interface Proxy {
+        onProxyError: ProxyErrorEvent;
     }
-    /**
-     * Use the chrome.runtime API to retrieve the background page, return details about the manifest, and listen for and respond to events in the app or extension lifecycle. You can also use this API to convert the relative path of URLs to fully-qualified URLs.
-     * @since Chrome 22
-     */
+}
+declare namespace chromepApi.runtime {
+    interface ExtensionConnectEvent extends chrome.events.Event<(port: chrome.runtime.Port) => void> {
+    }
+    interface RuntimeEvent extends chrome.events.Event<() => void> {
+    }
+    interface RuntimeInstalledEvent extends chrome.events.Event<(details: chrome.runtime.InstalledDetails) => void> {
+    }
+    interface ExtensionMessageEvent extends chrome.events.Event<(message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void> {
+    }
+    interface RuntimeRestartRequiredEvent extends chrome.events.Event<(reason: string) => void> {
+    }
+    interface RuntimeUpdateAvailableEvent extends chrome.events.Event<(details: chrome.runtime.UpdateAvailableDetails) => void> {
+    }
     export interface Runtime {
         /** Retrieves the JavaScript 'window' object for the background page running inside the current extension/app. If the background page is an event page, the system will ensure it is loaded before calling the callback. If there is no background page, an error is set. */
         getBackgroundPage(): Promise<Window>;
@@ -1329,15 +1523,30 @@ declare namespace chromepApi {
              * @since Chrome 42.
              */
         openOptionsPage(): Promise<void>;
+        onConnect: ExtensionConnectEvent;
+        onConnectExternal: ExtensionConnectEvent;
+        onSuspend: RuntimeEvent;
+        onStartup: RuntimeEvent;
+        onInstalled: RuntimeInstalledEvent;
+        onSuspendCanceled: RuntimeEvent;
+        onMessage: ExtensionMessageEvent;
+        onMessageExternal: ExtensionMessageEvent;
+        onRestartRequired: RuntimeRestartRequiredEvent;
+        onUpdateAvailable: RuntimeUpdateAvailableEvent;
+        onBrowserUpdateAvailable: RuntimeEvent;
+    }
+}
+declare namespace chromepApi.scriptBadge {
+    interface ScriptBadgeClickedEvent extends chrome.events.Event<(tab: chrome.tabs.Tab) => void> {
     }
     export interface ScriptBadge {
         getPopup(details: chrome.scriptBadge.GetPopupDetails): Promise<void>;
+        onClicked: ScriptBadgeClickedEvent;
     }
-    /**
-     * Use the chrome.sessions API to query and restore tabs and windows from a browsing session.
-     * Permissions:  "sessions"
-     * @since Chrome 37.
-     */
+}
+declare namespace chromepApi.sessions {
+    interface SessionChangedEvent extends chrome.events.Event<() => void> {
+    }
     export interface Sessions {
         /**
              * Gets the list of recently closed tabs and/or windows.
@@ -1371,14 +1580,87 @@ declare namespace chromepApi {
              * Parameter restoredSession: A sessions.Session containing the restored windows.Window or tabs.Tab object.
              */
         restore(sessionId?: string): Promise<chrome.sessions.Session>;
+        onChanged: SessionChangedEvent;
     }
-    /**
-     * Use the chrome.storage API to store, retrieve, and track changes to user data.
-     * Permissions:  "storage"
-     * @since Chrome 20.
-     */
+}
+declare namespace chromepApi.storage {
+    interface LocalStorageArea extends StorageArea {
+    }
+    interface SyncStorageArea extends StorageArea {
+    }
+    interface StorageArea {
+        /**
+                 * Gets the amount of space (in bytes) being used by one or more items.
+                 * @param callback Callback with the amount of space being used by storage, or on failure (in which case runtime.lastError will be set).
+                 * Parameter bytesInUse: Amount of space being used in storage, in bytes.
+                 */
+        getBytesInUse(): Promise<number>;
+        /**
+                 * Gets the amount of space (in bytes) being used by one or more items.
+                 * @param keys A single key or list of keys to get the total usage for. An empty list will return 0. Pass in null to get the total usage of all of storage.
+                 * @param callback Callback with the amount of space being used by storage, or on failure (in which case runtime.lastError will be set).
+                 * Parameter bytesInUse: Amount of space being used in storage, in bytes.
+                 */
+        getBytesInUse(keys: string | string[] | null): Promise<number>;
+        /**
+                 * Removes all items from storage.
+                 * @param callback Optional.
+                 * Callback on success, or on failure (in which case runtime.lastError will be set).
+                 */
+        clear(): Promise<void>;
+        /**
+                 * Sets multiple items.
+                 * @param items An object which gives each key/value pair to update storage with. Any other key/value pairs in storage will not be affected.
+                 * Primitive values such as numbers will serialize as expected. Values with a typeof "object" and "function" will typically serialize to {}, with the exception of Array (serializes as expected), Date, and Regex (serialize using their String representation).
+                 * @param callback Optional.
+                 * Callback on success, or on failure (in which case runtime.lastError will be set).
+                 */
+        set(items: Object): Promise<void>;
+        /**
+                 * Removes one item from storage.
+                 * @param key A single key for items to remove.
+                 * @param callback Optional.
+                 * Callback on success, or on failure (in which case runtime.lastError will be set).
+                 */
+        remove(key: string): Promise<void>;
+        /**
+                 * Removes items from storage.
+                 * @param keys A list of keys for items to remove.
+                 * @param callback Optional.
+                 * Callback on success, or on failure (in which case runtime.lastError will be set).
+                 */
+        remove(keys: string[]): Promise<void>;
+        /**
+                 * Gets one or more items from storage.
+                 * @param callback Callback with storage items, or on failure (in which case runtime.lastError will be set).
+                 * Parameter items: Object with items in their key-value mappings.
+                 */
+        get(): Promise<{
+                [key: string]: any;
+            }>;
+        /**
+                 * Gets one or more items from storage.
+                 * @param keys A single key to get, list of keys to get, or a dictionary specifying default values.
+                 * An empty list or object will return an empty result object. Pass in null to get the entire contents of storage.
+                 * @param callback Callback with storage items, or on failure (in which case runtime.lastError will be set).
+                 * Parameter items: Object with items in their key-value mappings.
+                 */
+        get(keys: string | string[] | Object | null): Promise<{
+                [key: string]: any;
+            }>;
+    }
+    interface StorageChangedEvent extends chrome.events.Event<(changes: {
+                [key: string]: chrome.storage.StorageChange;
+            }, areaName: string) => void> {
+    }
     export interface Storage {
+        local: LocalStorageArea;
+        sync: SyncStorageArea;
+        managed: StorageArea;
+        onChanged: StorageChangedEvent;
     }
+}
+declare namespace chromepApi.socket {
     export interface Socket {
         create(type: string, options?: Object): Promise<chrome.socket.CreateInfo>;
         connect(socketId: number, hostname: string, port: number): Promise<number>;
@@ -1394,11 +1676,10 @@ declare namespace chromepApi {
         getInfo(socketId: number): Promise<chrome.socket.SocketInfo>;
         getNetworkList(): Promise<chrome.socket.NetworkInterface[]>;
     }
-    /**
-     * Use the chrome.tabCapture API to interact with tab media streams.
-     * Permissions:  "tabCapture"
-     * @since Chrome 31.
-     */
+}
+declare namespace chromepApi.tabCapture {
+    interface CaptureStatusChangedEvent extends chrome.events.Event<(info: chrome.tabCapture.CaptureInfo) => void> {
+    }
     export interface TabCapture {
         /**
              * Captures the visible area of the currently active tab. Capture can only be started on the currently active tab after the extension has been invoked. Capture is maintained across page navigations within the tab, and stops when the tab is closed, or the media stream is closed by the extension.
@@ -1411,12 +1692,32 @@ declare namespace chromepApi {
              * @param callback Callback invoked with CaptureInfo[] for captured tabs.
              */
         getCapturedTabs(): Promise<chrome.tabCapture.CaptureInfo[]>;
+        onStatusChanged: CaptureStatusChangedEvent;
     }
-    /**
-     * Use the chrome.tabs API to interact with the browser's tab system. You can use this API to create, modify, and rearrange tabs in the browser.
-     * Permissions: The majority of the chrome.tabs API can be used without declaring any permission. However, the "tabs" permission is required in order to populate the url, title, and favIconUrl properties of Tab.
-     * @since Chrome 5.
-     */
+}
+declare namespace chromepApi.tabs {
+    interface TabHighlightedEvent extends chrome.events.Event<(highlightInfo: chrome.tabs.HighlightInfo) => void> {
+    }
+    interface TabRemovedEvent extends chrome.events.Event<(tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void> {
+    }
+    interface TabUpdatedEvent extends chrome.events.Event<(tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void> {
+    }
+    interface TabAttachedEvent extends chrome.events.Event<(tabId: number, attachInfo: chrome.tabs.TabAttachInfo) => void> {
+    }
+    interface TabMovedEvent extends chrome.events.Event<(tabId: number, moveInfo: chrome.tabs.TabMoveInfo) => void> {
+    }
+    interface TabDetachedEvent extends chrome.events.Event<(tabId: number, detachInfo: chrome.tabs.TabDetachInfo) => void> {
+    }
+    interface TabCreatedEvent extends chrome.events.Event<(tab: chrome.tabs.Tab) => void> {
+    }
+    interface TabActivatedEvent extends chrome.events.Event<(activeInfo: chrome.tabs.TabActiveInfo) => void> {
+    }
+    interface TabReplacedEvent extends chrome.events.Event<(addedTabId: number, removedTabId: number) => void> {
+    }
+    interface TabSelectedEvent extends chrome.events.Event<(tabId: number, selectInfo: chrome.tabs.TabWindowInfo) => void> {
+    }
+    interface TabZoomChangeEvent extends chrome.events.Event<(ZoomChangeInfo: chrome.tabs.ZoomChangeInfo) => void> {
+    }
     export interface Tabs {
         /**
              * Injects JavaScript code into a page. For details, see the programmatic injection section of the content scripts doc.
@@ -1652,21 +1953,28 @@ declare namespace chromepApi {
              * Paramater zoomSettings: The tab's current zoom settings.
              */
         getZoomSettings(tabId: number): Promise<chrome.tabs.ZoomSettings>;
+        onHighlighted: TabHighlightedEvent;
+        onRemoved: TabRemovedEvent;
+        onUpdated: TabUpdatedEvent;
+        onAttached: TabAttachedEvent;
+        onMoved: TabMovedEvent;
+        onDetached: TabDetachedEvent;
+        onCreated: TabCreatedEvent;
+        onActivated: TabActivatedEvent;
+        onReplaced: TabReplacedEvent;
+        onSelectionChanged: TabSelectedEvent;
+        onActiveChanged: TabSelectedEvent;
+        onHighlightChanged: TabHighlightedEvent;
+        onZoomChange: TabZoomChangeEvent;
     }
-    /**
-     * Use the chrome.topSites API to access the top sites that are displayed on the new tab page.
-     * Permissions:  "topSites"
-     * @since Chrome 19.
-     */
+}
+declare namespace chromepApi.topSites {
     export interface TopSites {
         /** Gets a list of top sites. */
         get(): Promise<chrome.topSites.MostVisitedURL[]>;
     }
-    /**
-     * Use the chrome.tts API to play synthesized text-to-speech (TTS). See also the related ttsEngine API, which allows an extension to implement a speech engine.
-     * Permissions:  "tts"
-     * @since Chrome 14.
-     */
+}
+declare namespace chromepApi.tts {
     export interface Tts {
         /** Checks whether the engine is currently speaking. On Mac OS X, the result is true whenever the system speech engine is speaking, even if the speech wasn't initiated by Chrome. */
         isSpeaking(): Promise<boolean>;
@@ -1686,25 +1994,29 @@ declare namespace chromepApi {
              */
         speak(utterance: string, options: chrome.tts.SpeakOptions): Promise<void>;
     }
-    /**
-     * Use the chrome.ttsEngine API to implement a text-to-speech(TTS) engine using an extension. If your extension registers using this API, it will receive events containing an utterance to be spoken and other parameters when any extension or Chrome App uses the tts API to generate speech. Your extension can then use any available web technology to synthesize and output the speech, and send events back to the calling function to report the status.
-     * Permissions:  "ttsEngine"
-     * @since Chrome 14.
-     */
-    export interface TtsEngine {
+}
+declare namespace chromepApi.ttsEngine {
+    interface TtsEngineSpeakEvent extends chrome.events.Event<(utterance: string, options: chrome.ttsEngine.SpeakOptions, sendTtsEvent: (event: chrome.tts.TtsEvent) => void) => void> {
     }
-    /**
-     * The chrome.types API contains type declarations for Chrome.
-     * @since Chrome 13.
-     */
+    export interface TtsEngine {
+        onSpeak: TtsEngineSpeakEvent;
+    }
+}
+declare namespace chromepApi.types {
     export interface Types {
     }
-    /**
-     * Use the chrome.vpnProvider API to implement a VPN client.
-     * Permissions:  "vpnProvider"
-     * Important: This API works only on Chrome OS.
-     * @since Chrome 43.
-     */
+}
+declare namespace chromepApi.vpnProvider {
+    interface VpnPlatformMessageEvent extends chrome.events.Event<(id: string, message: string, error: string) => void> {
+    }
+    interface VpnPacketReceptionEvent extends chrome.events.Event<(data: ArrayBuffer) => void> {
+    }
+    interface VpnConfigRemovalEvent extends chrome.events.Event<(id: string) => void> {
+    }
+    interface VpnConfigCreationEvent extends chrome.events.Event<(id: string, name: string, data: Object) => void> {
+    }
+    interface VpnUiEvent extends chrome.events.Event<(event: string, id?: string) => void> {
+    }
     export interface VpnProvider {
         /**
              * Creates a new VPN configuration that persists across multiple login sessions of the user.
@@ -1739,13 +2051,14 @@ declare namespace chromepApi {
              * @param callback Optional. Called when the notification is complete or if there is an error.
              */
         notifyConnectionStateChanged(state: string): Promise<void>;
+        onPlatformMessage: VpnPlatformMessageEvent;
+        onPacketReceived: VpnPacketReceptionEvent;
+        onConfigRemoved: VpnConfigRemovalEvent;
+        onConfigCreated: VpnConfigCreationEvent;
+        onUIEvent: VpnUiEvent;
     }
-    /**
-     * Use the chrome.wallpaper API to change the ChromeOS wallpaper.
-     * Permissions:  "wallpaper"
-     * Important: This API works only on Chrome OS.
-     * @since Chrome 43.
-     */
+}
+declare namespace chromepApi.wallpaper {
     export interface Wallpaper {
         /**
              * Sets wallpaper to the image at url or wallpaperData with the specified layout
@@ -1754,11 +2067,8 @@ declare namespace chromepApi {
              */
         setWallpaper(details: chrome.wallpaper.WallpaperDetails): Promise<any>;
     }
-    /**
-     * Use the chrome.webNavigation API to receive notifications about the status of navigation requests in-flight.
-     * Permissions:  "webNavigation"
-     * @since Chrome 16.
-     */
+}
+declare namespace chromepApi.webNavigation {
     export interface WebNavigation {
         /**
              * Retrieves information about the given frame. A frame refers to an <iframe> or a <frame> of a web page and is identified by a tab ID and a frame ID.
@@ -1775,26 +2085,28 @@ declare namespace chromepApi {
              */
         getAllFrames(details: chrome.webNavigation.GetAllFrameDetails): Promise<chrome.webNavigation.GetAllFrameResultDetails[] | null>;
     }
-    /**
-     * Use the chrome.webRequest API to observe and analyze traffic and to intercept, block, or modify requests in-flight.
-     * Permissions:  "webRequest", host permissions
-     * @since Chrome 17.
-     */
+}
+declare namespace chromepApi.webRequest {
     export interface WebRequest {
         /** Needs to be called when the behavior of the webRequest handlers has changed to prevent incorrect handling due to caching. This function call is expensive. Don't call it often. */
         handlerBehaviorChanged(): Promise<void>;
     }
-    /**
-     * Use the chrome.webstore API to initiate app and extension installations "inline" from your site.
-     * @since Chrome 15.
-     */
-    export interface Webstore {
+}
+declare namespace chromepApi.webstore {
+    interface InstallationStageEvent extends chrome.events.Event<(stage: string) => void> {
     }
-    /**
-     * Use the chrome.windows API to interact with browser windows. You can use this API to create, modify, and rearrange windows in the browser.
-     * Permissions: The chrome.windows API can be used without declaring any permission. However, the "tabs" permission is required in order to populate the url, title, and favIconUrl properties of Tab objects.
-     * @since Chrome 5.
-     */
+    interface DownloadProgressEvent extends chrome.events.Event<(percentDownloaded: number) => void> {
+    }
+    export interface Webstore {
+        onInstallStageChanged: InstallationStageEvent;
+        onDownloadProgress: DownloadProgressEvent;
+    }
+}
+declare namespace chromepApi.windows {
+    interface WindowIdEvent extends chrome.events.Event<(windowId: number, filters?: chrome.windows.WindowEventFilter) => void> {
+    }
+    interface WindowReferenceEvent extends chrome.events.Event<(window: chrome.windows.Window, filters?: chrome.windows.WindowEventFilter) => void> {
+    }
     export interface Windows {
         /** Gets details about a window. */
         get(windowId: number): Promise<chrome.windows.Window>;
@@ -1846,6 +2158,9 @@ declare namespace chromepApi {
              * @since Chrome 18.
              */
         getLastFocused(getInfo: chrome.windows.GetInfo): Promise<chrome.windows.Window>;
+        onRemoved: WindowIdEvent;
+        onCreated: WindowReferenceEvent;
+        onFocusChanged: WindowIdEvent;
     }
 }
 /// <reference types="filesystem" />
