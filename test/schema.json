@@ -1,0 +1,1142 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "ContentSetting": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getResourceIdentifiers": {
+          "instanceof": "function"
+        },
+        "set": {
+          "instanceof": "function"
+        }
+      },
+      "required": [
+        "clear",
+        "get",
+        "getResourceIdentifiers",
+        "set"
+      ]
+    },
+    "Event": {
+      "type": "object",
+      "properties": {
+        "addListener": {
+          "instanceof": "function"
+        },
+        "addRules": {
+          "instanceof": "function"
+        },
+        "getRules": {
+          "instanceof": "function"
+        },
+        "hasListener": {
+          "instanceof": "function"
+        },
+        "hasListeners": {
+          "instanceof": "function"
+        },
+        "removeListener": {
+          "instanceof": "function"
+        },
+        "removeRules": {
+          "instanceof": "function"
+        }
+      }
+    },
+    "Setting": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "set": {
+          "instanceof": "function"
+        },
+        "onChange": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "clear",
+        "get",
+        "set",
+        "onChange"
+      ]
+    },
+    "StorageArea": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getBytesInUse": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "set": {
+          "instanceof": "function"
+        }
+      },
+      "required": [
+        "clear",
+        "get",
+        "getBytesInUse",
+        "remove",
+        "set"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "alarms": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "instanceof": "function"
+        },
+        "clearAll": {
+          "instanceof": "function"
+        },
+        "create": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getAll": {
+          "instanceof": "function"
+        }
+      },
+      "required": [
+        "clear",
+        "clearAll",
+        "create",
+        "get",
+        "getAll"
+      ]
+    },
+    "browser": {
+      "type": "object",
+      "properties": {
+        "openTab": {
+          "instanceof": "function"
+        }
+      },
+      "required": [
+        "openTab"
+      ]
+    },
+    "bookmarks": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getChildren": {
+          "instanceof": "function"
+        },
+        "getRecent": {
+          "instanceof": "function"
+        },
+        "getSubTree": {
+          "instanceof": "function"
+        },
+        "getTree": {
+          "instanceof": "function"
+        },
+        "move": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "removeTree": {
+          "instanceof": "function"
+        },
+        "search": {
+          "instanceof": "function"
+        },
+        "update": {
+          "instanceof": "function"
+        },
+        "onChanged": {
+          "$ref": "#/definitions/Event"
+        },
+        "onChildrenReordered": {
+          "$ref": "#/definitions/Event"
+        },
+        "onCreated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onImportBegan": {
+          "$ref": "#/definitions/Event"
+        },
+        "onImportEnded": {
+          "$ref": "#/definitions/Event"
+        },
+        "onMoved": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRemoved": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "create",
+        "get",
+        "getChildren",
+        "getRecent",
+        "getSubTree",
+        "getTree",
+        "move",
+        "remove",
+        "removeTree",
+        "search",
+        "update",
+        "onChanged",
+        "onImportBegan",
+        "onImportEnded",
+        "onMoved",
+        "onRemoved"
+      ]
+    },
+    "browserAction": {
+      "type": "object",
+      "properties": {
+        "disable": {
+          "instanceof": "function"
+        },
+        "enable": {
+          "instanceof": "function"
+        },
+        "getBadgeBackgroundColor": {
+          "instanceof": "function"
+        },
+        "getPopup": {
+          "instanceof": "function"
+        },
+        "getTitle": {
+          "instanceof": "function"
+        },
+        "setIcon": {
+          "instanceof": "function"
+        },
+        "onClicked": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "disable",
+        "enable",
+        "getBadgeBackgroundColor",
+        "getPopup",
+        "getTitle",
+        "setIcon",
+        "onClicked"
+      ]
+    },
+    "browsingData": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "contentSettings": {
+      "type": "object",
+      "properties": {
+        "cookies": {
+          "$ref": "#/definitions/ContentSetting"
+        },
+        "images": {
+          "$ref": "#/definitions/ContentSetting"
+        },
+        "javascript": {
+          "$ref": "#/definitions/ContentSetting"
+        },
+        "notifications": {
+          "$ref": "#/definitions/ContentSetting"
+        },
+        "plugins": {
+          "$ref": "#/definitions/ContentSetting"
+        },
+        "popups": {
+          "$ref": "#/definitions/ContentSetting"
+        }
+      },
+      "required": [
+        "cookies",
+        "images",
+        "javascript",
+        "notifications",
+        "plugins",
+        "popups"
+      ]
+    },
+    "contextMenus": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "update": {
+          "instanceof": "function"
+        },
+        "onClicked": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "create",
+        "remove",
+        "update",
+        "onClicked"
+      ]
+    },
+    "cookies": {
+      "type": "object",
+      "properties": {
+        "get": {
+          "instanceof": "function"
+        },
+        "getAll": {
+          "instanceof": "function"
+        },
+        "getAllCookieStores": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "set": {
+          "instanceof": "function"
+        },
+        "onChanged": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "get",
+        "getAll",
+        "getAllCookieStores",
+        "remove",
+        "set",
+        "onChanged"
+      ]
+    },
+    "declarativeContent": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "desktopCapture": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "downloads": {
+      "type": "object",
+      "properties": {
+        "acceptDanger": {
+          "instanceof": "function"
+        },
+        "cancel": {
+          "instanceof": "function"
+        },
+        "download": {
+          "instanceof": "function"
+        },
+        "drag": {
+          "instanceof": "function"
+        },
+        "erase": {
+          "instanceof": "function"
+        },
+        "getFileIcon": {
+          "instanceof": "function"
+        },
+        "open": {
+          "instanceof": "function"
+        },
+        "pause": {
+          "instanceof": "function"
+        },
+        "removeFile": {
+          "instanceof": "function"
+        },
+        "resume": {
+          "instanceof": "function"
+        },
+        "search": {
+          "instanceof": "function"
+        },
+        "setShelfEnabled": {
+          "instanceof": "function"
+        },
+        "show": {
+          "instanceof": "function"
+        },
+        "showDefaultFolder": {
+          "instanceof": "function"
+        },
+        "onChanged": {
+          "$ref": "#/definitions/Event"
+        },
+        "onCreated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onErased": {
+          "$ref": "#/definitions/Event"
+        },
+        "onDeterminingFilename": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "acceptDanger",
+        "cancel",
+        "download",
+        "drag",
+        "erase",
+        "getFileIcon",
+        "open",
+        "pause",
+        "removeFile",
+        "resume",
+        "search",
+        "setShelfEnabled",
+        "show",
+        "showDefaultFolder",
+        "onChanged",
+        "onCreated",
+        "onErased",
+        "onDeterminingFilename"
+      ]
+    },
+    "extension": {
+      "type": "object",
+      "properties": {
+        "getBackgroundPage": {
+          "instanceof": "function"
+        },
+        "getURL": {
+          "instanceof": "function"
+        },
+        "getViews": {
+          "instanceof": "function"
+        },
+        "isAllowedFileSchemeAccess": {
+          "instanceof": "function"
+        },
+        "isAllowedIncognitoAccess": {
+          "instanceof": "function"
+        },
+        "setUpdateUrlData": {
+          "instanceof": "function"
+        },
+        "sendRequest": {
+          "instanceof": "function"
+        },
+        "onRequest": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRequestExternal": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "getBackgroundPage",
+        "getURL",
+        "getViews",
+        "isAllowedFileSchemeAccess",
+        "isAllowedIncognitoAccess",
+        "setUpdateUrlData",
+        "sendRequest",
+        "onRequest",
+        "onRequestExternal"
+      ]
+    },
+    "fontSettings": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "gcm": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "history": {
+      "type": "object",
+      "properties": {
+        "addUrl": {
+          "instanceof": "function"
+        },
+        "deleteAll": {
+          "instanceof": "function"
+        },
+        "deleteRange": {
+          "instanceof": "function"
+        },
+        "deleteUrl": {
+          "instanceof": "function"
+        },
+        "getVisits": {
+          "instanceof": "function"
+        },
+        "search": {
+          "instanceof": "function"
+        },
+        "onVisited": {
+          "$ref": "#/definitions/Event"
+        },
+        "onVisitRemoved": {
+          "$ref": "#/definitions/Event"          
+        }
+      },
+      "required": [
+        "addUrl",
+        "deleteAll",
+        "deleteRange",
+        "deleteUrl",
+        "getVisits",
+        "search",
+        "onVisited",
+        "onVisitRemoved"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "identity": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "idle": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "management": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "notifications": {
+      "type": "object",
+      "properties": {
+        "clear": {
+          "instanceof": "function"
+        },
+        "create": {
+          "instanceof": "function"
+        },
+        "getAll": {
+          "instanceof": "function"
+        },
+        "getPermissionLevel": {
+          "instanceof": "function"
+        },
+        "update": {
+          "instanceof": "function"
+        },
+        "onClosed": {
+          "$ref": "#/definitions/Event"
+        },
+        "onClicked": {
+          "$ref": "#/definitions/Event"
+        },
+        "onButtonClicked": {
+          "$ref": "#/definitions/Event"
+        },
+        "onPermissionLevelChanged": {
+          "$ref": "#/definitions/Event"
+        },
+        "onShowSettings": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "clear",
+        "create",
+        "getAll",
+        "getPermissionLevel",
+        "update",
+        "onClosed",
+        "onClicked",
+        "onButtonClicked",
+        "onPermissionLevelChanged",
+        "onShowSettings"
+      ]
+    },
+    "omnibox": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "pageCapture": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "permissions": {
+      "type": "object",
+      "properties": {
+        "contains": {
+          "instanceof": "function"
+        },
+        "getAll": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "request": {
+          "instanceof": "function"
+        },
+        "onAdded": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRemoved": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "contains",
+        "getAll",
+        "remove",
+        "request",
+        "onAdded",
+        "onRemoved"
+      ]
+    },
+    "power": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "network": {
+          "type": "object",
+          "properties": {
+            "networkPredictionEnabled": {
+              "$ref": "#/definitions/Setting"
+            }
+          },
+          "required": [
+            "networkPredictionEnabled"
+          ]
+        },
+        "services": {
+          "type": "object",
+          "properties": {
+            "alternateErrorPagesEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "autofillEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "safeBrowsingEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "searchSuggestEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "spellingServiceEnabled": {
+              "$ref": "#/definitions/Setting"
+            }
+          },
+          "required": [
+            "alternateErrorPagesEnabled",
+            "autofillEnabled",
+            "safeBrowsingEnabled",
+            "searchSuggestEnabled",
+            "spellingServiceEnabled"
+          ]
+        },
+        "websites": {
+          "type": "object",
+          "properties": {
+            "hyperlinkAuditingEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "referrersEnabled": {
+              "$ref": "#/definitions/Setting"
+            },
+            "thirdPartyCookiesAllowed": {
+              "$ref": "#/definitions/Setting"
+            }
+          },
+          "required": [
+            "hyperlinkAuditingEnabled",
+            "referrersEnabled",
+            "thirdPartyCookiesAllowed"
+          ]
+        }
+      },
+      "required": [
+        "network",
+        "services",
+        "websites"
+      ]
+    },
+    "proxy": {
+      "type": "object",
+      "properties": {
+        "settings": {
+          "$ref": "#/definitions/Setting"
+        },
+        "onProxyError": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "settings",
+        "onProxyError"
+      ]
+    },
+    "runtime": {
+      "type": "object",
+      "properties": {
+        "connect": {
+          "instanceof": "function"
+        },
+        "connectNative": {
+          "instanceof": "function"
+        },
+        "getBackgroundPage": {
+          "instanceof": "function"
+        },
+        "getManifest": {
+          "instanceof": "function"
+        },
+        "getPackageDirectoryEntry": {
+          "instanceof": "function"
+        },
+        "getPlatformInfo": {
+          "instanceof": "function"
+        },
+        "getURL": {
+          "instanceof": "function"
+        },
+        "id": {
+          "type": "string"
+        },
+        "reload": {
+          "instanceof": "function"
+        },
+        "requestUpdateCheck": {
+          "instanceof": "function"
+        },
+        "sendMessage": {
+          "instanceof": "function"
+        },
+        "sendNativeMessage": {
+          "instanceof": "function"
+        },
+        "onBrowserUpdateAvailable": {
+          "$ref": "#/definitions/Event"
+        },
+        "onConnect": {
+          "$ref": "#/definitions/Event"
+        },
+        "onConnectExternal": {
+          "$ref": "#/definitions/Event"
+        },
+        "onInstalled": {
+          "$ref": "#/definitions/Event"
+        },
+        "onMessage": {
+          "$ref": "#/definitions/Event"
+        },
+        "onMessageExternal": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRestartRequired": {
+          "$ref": "#/definitions/Event"
+        },
+        "onStartup": {
+          "$ref": "#/definitions/Event"
+        },
+        "onSuspend": {
+          "$ref": "#/definitions/Event"
+        },
+        "onSuspendCanceled": {
+          "$ref": "#/definitions/Event"
+        },
+        "onUpdateAvailable": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "connect",
+        "connectNative",
+        "getBackgroundPage",
+        "getManifest",
+        "getPackageDirectoryEntry",
+        "getPlatformInfo",
+        "getURL",
+        "id",
+        "reload",
+        "requestUpdateCheck",
+        "sendMessage",
+        "sendNativeMessage",
+        "onBrowserUpdateAvailable",
+        "onConnect",
+        "onConnectExternal",
+        "onInstalled",
+        "onStartup",
+        "onSuspend",
+        "onSuspendCanceled",
+        "onUpdateAvailable"
+      ]
+    },
+    "sessions": {
+      "type": "object",
+      "properties": {
+        "getDevices": {
+          "instanceof": "function"
+        },
+        "getRecentlyClosed": {
+          "instanceof": "function"
+        },
+        "restore": {
+          "instanceof": "function"
+        },
+        "onChanged": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "getDevices",
+        "getRecentlyClosed",
+        "restore",
+        "onChanged"
+      ]
+    },
+    "storage": {
+      "type": "object",
+      "properties": {
+        "local": {
+          "$ref": "#/definitions/StorageArea"
+        },
+        "managed": {
+          "$ref": "#/definitions/StorageArea"
+        },
+        "sync": {
+          "$ref": "#/definitions/StorageArea"
+        }
+      },
+      "required": [
+        "local",
+        "managed",
+        "sync"
+      ]
+    },
+    "tabCapture": {
+      "type": "object",
+      "properties": {
+        "capture": {
+          "instanceof": "function"
+        },
+        "getCapturedTabs": {
+          "instanceof": "function"
+        },
+        "onStatusChanged": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "capture",
+        "getCapturedTabs",
+        "onStatusChanged"
+      ]
+    },
+    "tabs": {
+      "type": "object",
+      "properties": {
+        "captureVisibleTab": {
+          "instanceof": "function"
+        },
+        "connect": {
+          "instanceof": "function"
+        },
+        "create": {
+          "instanceof": "function"
+        },
+        "detectLanguage": {
+          "instanceof": "function"
+        },
+        "duplicate": {
+          "instanceof": "function"
+        },
+        "executeScript": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getAllInWindow": {
+          "instanceof": "function"
+        },
+        "getCurrent": {
+          "instanceof": "function"
+        },
+        "getSelected": {
+          "instanceof": "function"
+        },
+        "highlight": {
+          "instanceof": "function"
+        },
+        "insertCSS": {
+          "instanceof": "function"
+        },
+        "move": {
+          "instanceof": "function"
+        },
+        "query": {
+          "instanceof": "function"
+        },
+        "remove": {
+          "instanceof": "function"
+        },
+        "reload": {
+          "instanceof": "function"
+        },
+        "sendMessage": {
+          "instanceof": "function"
+        },
+        "update": {
+          "instanceof": "function"
+        },
+        "onActivated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onAttached": {
+          "$ref": "#/definitions/Event"
+        },
+        "onCreated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onDetached": {
+          "$ref": "#/definitions/Event"
+        },
+        "onHighlighted": {
+          "$ref": "#/definitions/Event"
+        },
+        "onMoved": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRemoved": {
+          "$ref": "#/definitions/Event"
+        },
+        "onUpdated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onZoomChange": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "captureVisibleTab",
+        "connect",
+        "create",
+        "detectLanguage",
+        "duplicate",
+        "executeScript",
+        "get",
+        "getAllInWindow",
+        "getCurrent",
+        "getSelected",
+        "highlight",
+        "insertCSS",
+        "move",
+        "query",
+        "remove",
+        "reload",
+        "sendMessage",
+        "update",
+        "onActivated",
+        "onAttached",
+        "onCreated",
+        "onDetached",
+        "onHighlighted",
+        "onMoved",
+        "onUpdated",
+        "onZoomChange"
+      ]
+    },
+    "topSites": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "tts": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "ttsEngine": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "webNavigation": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    },
+    "webRequest": {
+      "type": "object",
+      "properties": {
+        "handlerBehaviorChanged": {
+          "instanceof": "function"
+        },
+        "onAuthRequired": {
+          "$ref": "#/definitions/Event"
+        },
+        "onBeforeRedirect": {
+          "$ref": "#/definitions/Event"
+        },
+        "onBeforeRequest": {
+          "$ref": "#/definitions/Event"
+        },
+        "onBeforeSendHeaders": {
+          "$ref": "#/definitions/Event"
+        },
+        "onCompleted": {
+          "$ref": "#/definitions/Event"
+        },
+        "onErrorOccurred": {
+          "$ref": "#/definitions/Event"
+        },
+        "onHeadersReceived": {
+          "$ref": "#/definitions/Event"
+        },
+        "onResponseStarted": {
+          "$ref": "#/definitions/Event"
+        },
+        "onSendHeaders": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "handlerBehaviorChanged",
+        "onAuthRequired",
+        "onBeforeRedirect",
+        "onBeforeRequest",
+        "onBeforeSendHeaders",
+        "onCompleted",
+        "onErrorOccurred",
+        "onHeadersReceived",
+        "onResponseStarted",
+        "onSendHeaders"
+      ]
+    },
+    "windows": {
+      "type": "object",
+      "properties": {
+        "create": {
+          "instanceof": "function"
+        },
+        "get": {
+          "instanceof": "function"
+        },
+        "getAll": {
+          "instanceof": "function"
+        },
+        "getCurrent": {
+          "instanceof": "function"
+        },
+        "getLastFocused": {
+          "instanceof": "function"
+        },
+        "update": {
+          "instanceof": "function"
+        },
+        "onCreated": {
+          "$ref": "#/definitions/Event"
+        },
+        "onFocusChanged": {
+          "$ref": "#/definitions/Event"
+        },
+        "onRemoved": {
+          "$ref": "#/definitions/Event"
+        }
+      },
+      "required": [
+        "create",
+        "get",
+        "getAll",
+        "getCurrent",
+        "getLastFocused",
+        "update",
+        "onCreated",
+        "onFocusChanged",
+        "onRemoved"
+      ]
+    }
+  },
+  "required": [
+    "alarms",
+    "bookmarks",
+    "browserAction",
+    "browsingData",
+    "contentSettings",
+    "contextMenus",
+    "cookies",
+    "declarativeContent",
+    "desktopCapture",
+    "downloads",
+    "extension",
+    "fontSettings",
+    "gcm",
+    "history",
+    "i18n",
+    "identity",
+    "idle",
+    "management",
+    "notifications",
+    "omnibox",
+    "pageCapture",
+    "permissions",
+    "power",
+    "privacy",
+    "proxy",
+    "runtime",
+    "sessions",
+    "storage",
+    "tabCapture",
+    "tabs",
+    "topSites",
+    "tts",
+    "ttsEngine",
+    "webNavigation",
+    "webRequest",
+    "windows"
+  ]
+}
