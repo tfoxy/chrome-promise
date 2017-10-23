@@ -10,8 +10,10 @@
 
 var chai = require('chai');
 var chaiAsPromised = require("chai-as-promised");
+var chaiJsonSchema = require("chai-json-schema");
 
 chai.use(chaiAsPromised);
+chai.use(chaiJsonSchema);
 var expect = chai.expect;
 
 var chrome = require('sinon-chrome');
@@ -36,34 +38,12 @@ describe('ChromePromise', function() {
       expect(chromep).to.be.an('object');
     });
 
-    it('has the same constants as chrome', function() {
-      expect(chromep).to.have.deep.property('runtime.id', chrome.runtime.id);
-    });
-
-
-    describe('.tabs', function() {
-
-      it('exists', function() {
-        expect(chromep).to.have.property('tabs');
-      });
-
-      it('is an object', function() {
-        expect(chromep.tabs).to.be.an('object');
-      });
-
+    it('has the same schema as chrome', function() {
+      expect(chromep).to.have.jsonSchema(require('./schema.json'));
     });
 
 
     describe('.tabs.create', function() {
-
-      it('exists', function() {
-        expect(chromep).to.have.deep.property('tabs.create');
-      });
-
-      it('is a function', function() {
-        expect(chromep.tabs.create).to.be.a('function');
-      });
-
       it('returns a promise', function() {
         expect(chromep.tabs.create({})).to.be.an.instanceOf(Promise);
       });
