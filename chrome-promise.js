@@ -24,6 +24,9 @@
   var slice = Array.prototype.slice,
       hasOwnProperty = Object.prototype.hasOwnProperty;
 
+  // Temporary hacky fix to make TypeScript `import` work
+  ChromePromise.default = ChromePromise;
+
   return ChromePromise;
 
   ////////////////
