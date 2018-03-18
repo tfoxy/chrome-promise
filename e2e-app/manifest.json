@@ -2,6 +2,7 @@
   "manifest_version": 2,
   "name": "TestExtension",
   "version": "0.0.1",
+  "optional_permissions": ["history"],
   "permissions": [
     "storage",
     "tabs"

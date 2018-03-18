@@ -6,6 +6,7 @@
   "types": "./chrome-promise.d.ts",
   "scripts": {
     "test": "mocha && protractor",
+    "test:pup": "mocha e2e-pup --timeout 20000",
     "watch": "node watch.js",
     "compileTypescript": "tsc type-definitions/create-type-definitions.ts --lib es5,es2015,dom",
     "createTypeDefinitions": "node type-definitions/create-type-definitions.js node_modules/@types/chrome/index.d.ts > chrome-promise.d.ts"
@@ -34,6 +35,7 @@
     "chokidar": "^1.6.1",
     "mocha": "~2.4.5",
     "protractor": "^5.1.2",
+    "puppeteer": "^1.1.1",
     "sinon": "~1.17.3",
     "sinon-chrome": "~0.2.1",
     "ts-node": "^3.3.0",

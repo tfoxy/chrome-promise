@@ -36,8 +36,11 @@
     var chrome = options.chrome || root.chrome;
     var Promise = options.Promise || root.Promise;
     var runtime = chrome.runtime;
+    var self = this;
 
-    fillProperties(chrome, this);
+    fillProperties(chrome, self);
+
+    chrome.permissions.onAdded.addListener(permissionsAddedListener);
 
     ////////////////
 
@@ -90,6 +93,16 @@
             target[key] = val;
           }
         }
+      }
+    }
+
+    function permissionsAddedListener(perms) {
+      if (perms.permissions && perms.permissions.length) {
+        var approvedPerms = {};
+        perms.permissions.forEach(function(permission) {
+          approvedPerms[permission] = chrome[permission];
+        });
+        fillProperties(approvedPerms, self);
       }
     }
   }
