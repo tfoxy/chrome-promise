@@ -17,9 +17,20 @@ describe('chrome extension page', () => {
     };
     if (process.env.TRAVIS) {
       puppeteerOptions.args.push('--no-sandbox', '--disable-setuid-sandbox');
+      console.log('Launching puppeteer...');
     }
     browser = await puppeteer.launch(puppeteerOptions);
+    if (process.env.TRAVIS) {
+      console.log('Puppeteer launched.');
+      await new Promise(cb => setTimeout(cb, 10));
+      console.log('Opening new page...');
+    }
     page = await browser.newPage();
+    if (process.env.TRAVIS) {
+      console.log('Page opened.');
+      await new Promise(cb => setTimeout(cb, 10));
+      console.log('Starting...');
+    }
   });
 
   beforeEach(async () => {

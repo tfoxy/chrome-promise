@@ -5,7 +5,7 @@
   "main": "./chrome-promise.js",
   "types": "./chrome-promise.d.ts",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --timeout 10000",
     "test:pup": "mocha e2e-pup --timeout 20000",
     "watch": "node watch.js",
     "compileTypescript": "tsc type-definitions/create-type-definitions.ts --lib es5,es2015,dom",
