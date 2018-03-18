@@ -28,10 +28,6 @@ describe('chrome extension page', () => {
     }
   });
 
-  it('has a chrome object', async () => {
-    expect(await page.evaluate('typeof chrome')).to.equals('object');
-  });
-
   describe('with ChromePromise', () => {
     const chromePromiseScript = fs.readFileSync('chrome-promise.js', {
       encoding: 'utf8'
@@ -39,24 +35,6 @@ describe('chrome extension page', () => {
 
     beforeEach(async () => {
       await page.evaluate(chromePromiseScript);
-    });
-
-    afterEach(async () => {
-      await page.evaluate(() => {
-        chrome.storage.local.clear();
-      });
-    });
-
-    it('sets and gets some value using chrome.storage', async () => {
-      function script() {
-        const chromep = new ChromePromise();
-
-        return chromep.storage.local.set({foo: 'bar'}).then(() => {
-          return chromep.storage.local.get('foo');
-        });
-      }
-
-      expect(await page.evaluate(script)).to.deep.equal({foo: 'bar'});
     });
 
     it('request permissions fine', async () => {
