@@ -40,7 +40,9 @@
 
     fillProperties(chrome, self);
 
-    chrome.permissions.onAdded.addListener(permissionsAddedListener);
+    if (chrome.permissions) {
+      chrome.permissions.onAdded.addListener(permissionsAddedListener);
+    }
 
     ////////////////
 
