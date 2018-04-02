@@ -37,7 +37,7 @@ describe('chrome extension page', () => {
       await page.evaluate(chromePromiseScript);
     });
 
-    it('request permissions fine', async () => {
+    it('successfully requests history permission', async () => {
       function script() {
         const chromep = new ChromePromise();
         const button = document.createElement('button');
@@ -57,6 +57,31 @@ describe('chrome extension page', () => {
 
       await page.evaluate(script);
       expect(await page.evaluate(() => typeof window.chromep.history)).to.equal('undefined');
+      await page.click('button.CHROME_PROMISE_TEST');
+      const text = await page.evaluate(() => window.promise);
+      expect(text).to.equal('object');
+    });
+
+    it('successfully requests system.cpu permission', async () => {
+      function script() {
+        const chromep = new ChromePromise();
+        const button = document.createElement('button');
+        button.className = 'CHROME_PROMISE_TEST';
+        button.onclick = () => {
+          window.promise = chromep.permissions.request({
+            permissions: ['system.cpu'],
+          }).then(() => {
+            return typeof chromep.system;
+          }).catch((err) => {
+            return err.message;
+          });
+        };
+        document.body.appendChild(button);
+        window.chromep = chromep;
+      }
+
+      await page.evaluate(script);
+      expect(await page.evaluate(() => typeof window.chromep.system)).to.equal('undefined');
       await page.click('button.CHROME_PROMISE_TEST');
       const text = await page.evaluate(() => window.promise);
       expect(text).to.equal('object');

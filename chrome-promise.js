@@ -102,7 +102,10 @@
       if (perms.permissions && perms.permissions.length) {
         var approvedPerms = {};
         perms.permissions.forEach(function(permission) {
-          approvedPerms[permission] = chrome[permission];
+          var api = /^[^.]+/.exec(permission);
+          if (api in chrome) {
+            approvedPerms[api] = chrome[api];
+          }
         });
         fillProperties(approvedPerms, self);
       }
