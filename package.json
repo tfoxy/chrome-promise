@@ -2,8 +2,8 @@
   "name": "chrome-promise",
   "version": "2.2.2",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
-  "main": "./chrome-promise.js",
-  "types": "./chrome-promise.d.ts",
+  "main": "index.js",
+  "types": "chrome-promise.d.ts",
   "scripts": {
     "test": "mocha --timeout 10000",
     "test:pup": "mocha e2e-pup --timeout 20000",

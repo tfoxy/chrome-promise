@@ -17,7 +17,7 @@ chai.use(chaiJsonSchema);
 var expect = chai.expect;
 
 var chrome = require('sinon-chrome');
-var ChromePromise = require('..');
+var ChromePromise = require('../constructor');
 
 describe('ChromePromise', function() {
   "use strict";

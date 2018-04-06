@@ -7,19 +7,26 @@
  */
 
 (function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([], factory.bind(null, typeof exports === 'object' ? this : root));
-  } else if (typeof exports === 'object') {
+  if (typeof exports === 'object') {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory(this);
+  } else if (typeof define === 'function' && define.amd) {
+    // AMD. Register as an anonymous module.
+    define([], factory.bind(null, typeof exports === 'object' ? this : root));
   } else {
     // Browser globals (root is window)
     root.ChromePromise = factory(root);
+    var script = document.currentScript;
+    if (script) {
+      var name = script.dataset.instance;
+      if (name) {
+        root[name] = new root.ChromePromise();
+      }
+    }
   }
-}(this, function(root) {
+}(typeof self !== 'undefined' ? self : this, function(root) {
   'use strict';
   var slice = Array.prototype.slice,
       hasOwnProperty = Object.prototype.hasOwnProperty;
@@ -37,6 +44,7 @@
     var Promise = options.Promise || root.Promise;
     var runtime = chrome.runtime;
     var self = this;
+    if (!self) throw new Error('ChromePromise must be called with new keyword');
 
     fillProperties(chrome, self);
 

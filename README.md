@@ -2,7 +2,6 @@ chrome-promise
 ==========
 
 [![npm version](http://img.shields.io/npm/v/chrome-promise.svg)](https://npmjs.org/package/chrome-promise)
-[![bower version](https://img.shields.io/bower/v/chrome-promise.svg)](https://github.com/tfoxy/chrome-promise/releases)
 [![build status](https://img.shields.io/travis/tfoxy/chrome-promise.svg)](https://travis-ci.org/tfoxy/chrome-promise)
 
 Chrome API using promises.
@@ -22,24 +21,18 @@ Or yarn
 yarn add chrome-promise
 ```
 
-Or bower
-
-```sh
-bower install chrome-promise
-```
-
 Or download chrome-promise.js file.
 
 You can include it in your HTML like this:
 
 ```html
-<script src="chrome-promise.js"></script>
+<script src="chrome-promise.js" data-instance="chromep"></script>
 ```
 
 Or you can use ES2015 import statement:
 
 ```js
-import ChromePromise from 'chrome-promise';
+import chromep from 'chrome-promise';
 ```
 
 
@@ -54,8 +47,6 @@ Create an issue if it doesn't work for your version.
 Use local storage.
 
 ```js
-const chromep = new ChromePromise();
-
 chromep.storage.local.set({foo: 'bar'}).then(function() {
   alert('foo set');
   return chromep.storage.local.get('foo');
@@ -67,10 +58,8 @@ chromep.storage.local.set({foo: 'bar'}).then(function() {
 Detect languages of all tabs.
 
 ```js
-const chromep = new ChromePromise();
-
 chromep.tabs.query({}).then((tabs) => {
-  let promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
+  const promises = tabs.map(tab => chromep.tabs.detectLanguage(tab.id));
   return Promise.all(promises);
 }).then((languages) => {
   alert('Languages: ' + languages.join(', '));
@@ -81,6 +70,17 @@ chromep.tabs.query({}).then((tabs) => {
 
 
 ## Options
+
+If you are testing with node, you can provide a mock for the chrome API
+([sinon-chrome](https://github.com/acvetkov/sinon-chrome) is a good choice)
+using the constructor.
+
+```js
+const ChromePromise = require('chrome-promise/constructor');
+const chrome = require('sinon-chrome');
+
+const chromep = new ChromePromise({ chrome });
+```
 
 The constructor accepts an options parameter with the following properties:
 
@@ -95,8 +95,6 @@ This library is not a replacement of the `chrome` api.
 It should be used only for functions that have a callback.
 
 ```js
-const chromep = new ChromePromise();
-
 // this returns a rejected promise (because a callback is added to getManifest)
 chromep.runtime.getManifest();
 
@@ -108,8 +106,6 @@ When there's a callback with multiple parameters,
 the promise will return an array with the callback arguments.
 
 ```js
-const chromep = new ChromePromise();
-
 chromep.hid.receive(4).then(function(args) {
   const reportId = args[0];
   const data = args[1];
@@ -134,7 +130,6 @@ If the API is undefined, first check the `permissions` in the `manifest.json` of
 }
 
 // main.js
-const chromep = new ChromePromise();
 console.log(typeof chromep.tabs)  // "object"
 console.log(typeof chromep.bookmarks)  // "undefined"
 ```
@@ -147,8 +142,6 @@ If you are using [babel](https://github.com/babel/babel) or chrome ≥ 55, you c
 to achieve this.
 
 ```js
-const chromep = new ChromePromise();
-
 async function main() {
   await chromep.storage.local.set({foo: 'bar'});
   alert('foo set');
@@ -178,8 +171,6 @@ and [Q.spawn](https://github.com/kriskowal/q/wiki/API-Reference#qspawngeneratorf
 from the [Q library](https://github.com/kriskowal/q), the previous examples can be rewritten as:
 
 ```js
-const chromep = new ChromePromise();
-
 Q.spawn(function* () {
   yield chromep.storage.local.set({foo: 'bar'});
   alert('foo set');
