@@ -17,6 +17,7 @@ chai.use(chaiJsonSchema);
 var expect = chai.expect;
 
 var chrome = require('sinon-chrome');
+chrome.runtime.id = 'foo123';  // Fix for schema.json
 var ChromePromise = require('../constructor');
 
 describe('ChromePromise', function() {
