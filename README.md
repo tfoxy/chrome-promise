@@ -5,6 +5,7 @@ chrome-promise
 [![build status](https://img.shields.io/travis/tfoxy/chrome-promise.svg)](https://travis-ci.org/tfoxy/chrome-promise)
 
 Chrome API using promises.
+You can check other alternative libraries at the end of this file. 
 
 
 ## Installation
@@ -204,3 +205,10 @@ Q.async(function* () {
 ```
 
 You can also use the [co library](https://github.com/tj/co) instead of _Q_.
+
+
+## Alternative libraries
+
+* [mozilla/webextension-polyfill](https://github.com/mozilla/webextension-polyfill)
+* [acvetkov/then-chrome](https://github.com/acvetkov/then-chrome)
+* [KeithHenry/chromeExtensionAsync](https://github.com/KeithHenry/chromeExtensionAsync)
