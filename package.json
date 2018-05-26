@@ -3,7 +3,7 @@
   "version": "3.0.0",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
   "main": "index.js",
-  "types": "chrome-promise.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha --timeout 10000",
     "test:pup": "mocha e2e-pup --timeout 20000",
