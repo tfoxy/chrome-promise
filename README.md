@@ -5,7 +5,8 @@ chrome-promise
 [![build status](https://img.shields.io/travis/tfoxy/chrome-promise.svg)](https://travis-ci.org/tfoxy/chrome-promise)
 
 Chrome API using promises.
-You can check other alternative libraries at the end of this file. 
+
+*Note: I'm no longer adding features to this library (only bug fixing). You can check other alternative libraries at the end of this file.*
 
 
 ## Installation
