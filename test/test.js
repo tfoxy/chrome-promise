@@ -18,6 +18,11 @@ var expect = chai.expect;
 
 var chrome = require('sinon-chrome');
 chrome.runtime.id = 'foo123';  // Fix for schema.json
+
+// Some time around Chrome 71, extension.sendRequest (and a few others) started
+// throwing an error when accessed.  This mimics that behavior.
+Object.defineProperty(chrome.extension, 'sendRequest', { get: function() { throw new Error('Deprecated!'); }}); 
+
 var ChromePromise = require('../constructor');
 
 describe('ChromePromise', function() {
@@ -42,7 +47,6 @@ describe('ChromePromise', function() {
     it('has the same schema as chrome', function() {
       expect(chromep).to.have.jsonSchema(require('./schema.json'));
     });
-
 
     describe('.tabs.create', function() {
       it('returns a promise', function() {
