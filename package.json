@@ -1,6 +1,6 @@
 {
   "name": "chrome-promise",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Promises for chrome JavaScript APIs which are used in extensions and apps.",
   "main": "index.js",
   "types": "index.d.ts",
