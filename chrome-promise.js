@@ -91,7 +91,17 @@
     function fillProperties(source, target) {
       for (var key in source) {
         if (hasOwnProperty.call(source, key)) {
-          var val = source[key];
+          var val;
+          // Sometime around Chrome v71, certain deprecated methods on the
+          // extension APIs started using proxies to throw an error if the
+          // deprecated methods were accessed, regardless of whether they
+          // were invoked or not.  That would cause this code to throw, even
+          // if no one was actually invoking that method.
+          try {
+            val = source[key];
+          } catch(err) {
+           continue;
+          }
           var type = typeof val;
 
           if (type === 'object' && !(val instanceof ChromePromise)) {

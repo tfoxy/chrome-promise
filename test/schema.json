@@ -469,10 +469,7 @@
         "getViews",
         "isAllowedFileSchemeAccess",
         "isAllowedIncognitoAccess",
-        "setUpdateUrlData",
-        "sendRequest",
-        "onRequest",
-        "onRequestExternal"
+        "setUpdateUrlData"
       ]
     },
     "fontSettings": {
