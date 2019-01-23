@@ -11,10 +11,10 @@
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
-    module.exports = factory(this);
+    module.exports = factory(this || root);
   } else if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define([], factory.bind(null, typeof exports === 'object' ? this : root));
+    define([], factory.bind(null, this || root));
   } else {
     // Browser globals (root is window)
     root.ChromePromise = factory(root);
